@@ -56,12 +56,6 @@ module.exports = (sequelize) => {
     type: DataTypes.INTEGER, 
     allowNull: false,
    },
-   createInDb:{   // creamos esta propiedad "creado en BD" por si queremos llamar
-    type: DataTypes.BOOLEAN,
-    allowNull: false,
-    defaultValue: true,
-   }  // por si hacemos la distincion de los que tiene la api y los de db, accedemos mas facil al que cree x esta propiedad
-// todos los paises que yo cree, se van a crear con esta propiedad, por eso lo seteamos en true
 },
     { timestamps: false }
   );

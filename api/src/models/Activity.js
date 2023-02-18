@@ -13,13 +13,6 @@ module.exports = (sequelize) => {
   // Temporada (Verano, Otoño, Invierno o Primavera). *
 
   sequelize.define('Activity', {
-    id: {
-        type: DataTypes.INTEGER, 
-        allowNull: false,
-        primaryKey: true,
-        autoIncrement: true
-    },
-
     name: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -30,16 +23,26 @@ module.exports = (sequelize) => {
         type: DataTypes.INTEGER,    //DataTypes.ENUM('1','2','3','4','5'), 
         allowNull: false,
         validate: { 
+            min: 1,
             max: 5,
-            min: 1
+            isEven(value){
+                if(value < 1 || value > 5){
+                    throw new Error("La dificultad tiene que ser entre 1 y 5")
+                }
+            }
         }
     },
 
     duration: {
-        type: DataTypes.TIME, 
+        type: DataTypes.INTEGER, 
         validate: { 
+            min: 1,
             max: 24,
-            min: 1
+            isEven(value){
+                if(value < 1 || value > 24){
+                    throw new Error("La duracion tiene que ser entre 1 y 24");
+                }
+            }
         }
     },
 
@@ -47,6 +50,12 @@ module.exports = (sequelize) => {
         type: DataTypes.ENUM('Summer', 'Autumn', 'Winter', 'Spring'),
         allowNull: false
      },
+     createInDb:{   // creamos esta propiedad "creado en BD" por si queremos llamar
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: true,
+       }  // por si hacemos la distincion de los que tiene la api y los de db, accedemos mas facil al que cree x esta propiedad
+    // todos los paises que yo cree, se van a crear con esta propiedad, por eso lo seteamos en true
     },
     { timestamps: false }
     );
