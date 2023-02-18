@@ -23,11 +23,11 @@ module.exports = (sequelize) => {
     name: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true // ????
+        unique: true
     },
 
     difficulty: {   
-        type: DataTypes.INTEGER, // FALTA INDICAR QUE ES DEL 1 AL 5    DataTypes.ENUM('1','2','3','4','5'), ??
+        type: DataTypes.INTEGER,    //DataTypes.ENUM('1','2','3','4','5'), 
         allowNull: false,
         validate: { 
             max: 5,
@@ -36,7 +36,7 @@ module.exports = (sequelize) => {
     },
 
     duration: {
-        type: DataTypes.INTEGER, //   type: DataTypes.TIME,  ??
+        type: DataTypes.TIME, 
         validate: { 
             max: 24,
             min: 1
@@ -51,7 +51,4 @@ module.exports = (sequelize) => {
     { timestamps: false }
     );
  };
-
-
-
 

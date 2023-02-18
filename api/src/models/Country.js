@@ -16,19 +16,19 @@ module.exports = (sequelize) => {
 
   sequelize.define('Country', {
     id: {
-      type: DataTypes.UUID, // UUID---> como la API ya tiene ID, con UUID creamos un ID con letras y numeros especificos, unico y no se repite
+      type: DataTypes.STRING(3),  //ID (Código de tres letras). *
       allowNull: false,
       primaryKey: true,
-      defaultValue: DataTypes.UUIDV4, // A default unique universal identifier generated following the UUID v4 standard
     },
+
     name: {
       type: DataTypes.STRING,
       allowNull: false,
-      // unique: true ??
+      unique: true,
     },
 
     image: {   //image = flags
-      type: DataTypes.STRING, // image es string porque la URL se toma con ""
+      type: DataTypes.STRING, // image es string porque la URL viene en ""
       allowNull: false,
    },
 
@@ -53,10 +53,9 @@ module.exports = (sequelize) => {
    },
 
    population: {
-    type: DataTypes.INTEGER,   // es string??? o INTEGER ????
+    type: DataTypes.INTEGER, 
     allowNull: false,
    },
-
    createInDb:{   // creamos esta propiedad "creado en BD" por si queremos llamar
     type: DataTypes.BOOLEAN,
     allowNull: false,
