@@ -1,5 +1,9 @@
 import React from "react";
-
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector, UseSelector } from "react-redux";
+import { getCountries } from "../../redux/actions";
+//import { Link } from "react-router-dom";
+import Cards from "../Cards/Cards";
 
 // HOME PAGE | la página principal de tu SPA debe contener:
 
@@ -18,9 +22,28 @@ import React from "react";
 
 
 const Home = () => {
+
+   // const dispatch = useDispatch()
+   // const allCountries = useSelector((state) => state.countries)
+
+   // useEffect(() => {
+   //    dispatch(getCountries());
+   // },[])
+
+
+   // const handleClick = (event)=> {
+   //    event.preventDefault();
+   //    dispatch(getCountries());
+   // }
+
+   // <Link to= '/activities'>Create activity</Link>
+   // boton dentro del return <button onSubmit={handleClick} >Reload Countries</button>
+   
    return(
       <div>
-
+         <h1>Country</h1>
+         <Cards />
+         <div></div>
       </div>
    )
 

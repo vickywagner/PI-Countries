@@ -14,6 +14,9 @@ const LandingPage = () => {
    return (
    	<div>
          <h1>Welcome to my website about countries.</h1>
+         <Link to="/home">
+            <button>Home</button>
+         </Link>
       </div>
 
 	)
