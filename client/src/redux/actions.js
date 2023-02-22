@@ -5,6 +5,8 @@ export const GET_DETAIL = 'GET_DETAIL';
 export const FILTER_CONTINENT = 'FILTER_CONTINENT';
 export const ORDER_BY_NAME = 'ORDER_BY_NAME';
 export const SEARCH_BY_NAME = 'SEARCH_BY_NAME';
+export const GET_ACTIVITIES = 'GET_ACTIVITIES';
+export const POST_ACTIVITY = 'POST_ACTIVITY';
 
 
 //******ACTIONS*****
@@ -58,3 +60,27 @@ export const searchByName = (name) => async dispatch => {
         console.error(error);
     }
 }
+
+export const getActivities = () => async dispatch => {
+    let json = await axios.get('/activities')
+    return dispatch({ type: GET_ACTIVITIES, payload: json.data })
+}
+
+export const postActivity = (payload) => {
+	console.log(payload);
+	return async function (dispatch) {
+		try {
+			const response = await axios.post('http://localhost:3001/activities', payload);
+			dispatch({
+				type: POST_ACTIVITY,
+				payload: response.data,
+			});
+		} catch (error) {
+            console.log(error)
+			// dispatch({
+				// type: ERROR,
+				// payload: error,
+			//});
+		}
+	};
+};

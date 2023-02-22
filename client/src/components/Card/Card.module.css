@@ -1,0 +1,32 @@
+.cardContainer{
+    padding: 2rem;
+    border: .1rem solid #ffffff;
+    border-radius: 12px;
+    margin: .8rem;
+
+    backdrop-filter: blur(100px);
+    color: darkgrey;
+    background: linear-gradient(
+        to top,
+        right rgb(198, 196, 196) 0%,
+        rgba(255, 251, 251, 0.12) 20%
+      );
+}
+
+.cardContainer:hover{
+    border: .2rem solid rgb(247, 244, 237);
+    transform: scale(1.05);
+    transition: 1s;
+}
+
+.info {
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 1.2rem;
+    line-height: .5rem;
+    margin: 1rem;
+    align-items: center;
+    justify-content: center;
+}

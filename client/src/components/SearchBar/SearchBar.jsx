@@ -3,6 +3,11 @@ import { useDispatch } from "react-redux";
 import { searchByName } from "../../redux/actions";
 import style from "../SearchBar/SearchBar.module.css"
 
+
+// FALTA buscar x id
+// falta limpiar el input ---> clase dai forms
+
+
 const SearchBar = () => {
     const dispatch = useDispatch();
     const [name, setName] = useState(''); // seteo mi estado como string

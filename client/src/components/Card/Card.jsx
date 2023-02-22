@@ -1,15 +1,18 @@
 import React from "react";
+import style from "../Card/Card.module.css"
 import { Link } from "react-router-dom";
 
 
 function Card ({ id, name, continent, image }) { 
     return(
-        <div>
+        <div className={style.cardContainer}>
+          <div className = {style.info}>
             <h3>Name: {name}</h3>
             <p>Continent: {continent}</p>
-             <Link to={`/detail/${id}`} >
+           </div>
+            <Link to={`/detail/${id}`} >
                 <img src={image} alt={name} />
-             </Link>
+            </Link>
         </div>
     );
 }

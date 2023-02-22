@@ -1,4 +1,5 @@
 import React from "react";
+import style from "../Home/Home.module.css";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCountries } from "../../redux/actions";
@@ -6,6 +7,7 @@ import { getCountries } from "../../redux/actions";
 import Card from "../Card/Card";
 import Filters from "../Filters/Filters";
 import Pagination from "../Pagination/Pagination";
+import Footer from "../Footer/Footer";
 
 // HOME PAGE | la página principal de tu SPA debe contener:
 
@@ -48,7 +50,7 @@ const [orden, setOrden] = useState('');
    }
 
    return(
-      <div>
+      <div className={style.container}>
          <h1>Countries</h1>
         {/*  <Link to= '/activities'>Create activity</Link>
          */}
@@ -74,6 +76,7 @@ const [orden, setOrden] = useState('');
                 </div>
                   )})
             }
+         <Footer />
       </div>
    )
 }

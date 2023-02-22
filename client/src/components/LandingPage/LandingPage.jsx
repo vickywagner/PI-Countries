@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from 'react-router-dom';
+import style from "../LandingPage/LandingPage.module.css"
+import Beach from "../../assets/Beach.mp4";
 
 
 
@@ -12,11 +14,14 @@ import { Link } from 'react-router-dom';
 
 const LandingPage = () => {
    return (
-   	<div>
+   	<div className={style.container}>
+         <video src={Beach} muted autoPlay loop />
+         <div className={style.content}>
          <h1>Welcome to my website about countries.</h1>
-         <Link to="/home">
-            <button>Home</button>
+         <Link className={style.link} to="/home">
+            <button className={style.btn} >Start</button>
          </Link>
+        </div>
       </div>
 
 	)
