@@ -8,6 +8,8 @@ const router = Router();
 router.get("/", totalCountries);
 
 
+
+
 //************Ruta a cada Pais segun ID***********
 router.get('/:idPais', async (req, res) => {
   const idPais = req.params.idPais

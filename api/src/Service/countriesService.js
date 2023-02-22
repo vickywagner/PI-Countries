@@ -6,32 +6,34 @@ const { Op } = require("sequelize");
 //************ Traer informacion de la API *************
 
 const getApiInfo = async () => {  // Trabajamos de manera asincrona porque no sabemos cuanto demora la rta, 
-    //esperamos la rta antes cargarle la info a la const apiUrl         
-    const apiUrl = await axios.get('https://restcountries.com/v3/all');                                                           
-    const apiInfo = apiUrl.data.map(country => {
-    const map = {
-    id: country.cca3,
-    name: country.name.common,
-    image: country.flags[1],
-    continent: country.region,
-    capital: country.capital ? country.capital[0] : `This country doesn't have capital.`,
-    subregion: country.subregion ? country.subregion : `This country doesn't have subregion.`,
-    area: country.area,     // area: `${country.area}km2`,
-    population: country.population,   
-    }
-
-    return map;
-    });
+                                    //esperamos la rta antes cargarle la info a la const apiUrl         
+   const apiUrl = await axios.get('https://restcountries.com/v3/all');                                                           
+   const apiInfo = apiUrl.data.map(country => {
+    	const map = {
+			id: country.cca3,
+			name: country.name.common,
+			image: country.flags[1],
+			continent: country.region,
+			capital: country.capital ? country.capital[0] : `This country doesn't have capital.`,
+			subregion: country.subregion ? country.subregion : `This country doesn't have subregion.`,
+			area: country.area,     // area: `${country.area}km2`,
+			population: country.population,   
+    	}
+	 	return map;
+   });
     //console.log(apiInfo);
-    try{ 
-    const countries = await Country.findAll();
-    if(!countries.length) {
-    await Country.bulkCreate(apiInfo)
-    }
-    } catch (error) {
-    console.log({ error: error.message });
-    }
-}
+    
+	try{ 
+		const countries = await Country.findAll();
+		if(!countries.length) {
+		await Country.bulkCreate(apiInfo)
+   	}
+   } catch (error) {
+     		console.log({ error: error.message });
+		}
+};
+
+
 
 const allCountries = async () => {
     try{
