@@ -5,18 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 
-// DETAIL PAGE | en esta vista se deberá mostrar toda la información específica de un país:
-
-// ID (Código de tres letrass).
-// Nombre.
-// Imagen de la bandera.
-// Continente.
-// Capital.
-// Subregión (si tiene).
-// Área (si tiene).
-// Población.
-
-
 const Detail = () => { 
     const dispatch = useDispatch();
     const { id } = useParams(); //me traigo el id desde la ruta gracias al useParams
