@@ -5,7 +5,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getCountries } from "../../redux/actions";
 
-const NavBar = ({onSearch}) => {
+const NavBar = () => {
     const [visibility, setVisibility] = useState(null) // para que se muestre el nav en todas menos en landing
     const dispatch = useDispatch();  // Nos traemos los paises
     const location = useLocation();
@@ -24,7 +24,7 @@ const NavBar = ({onSearch}) => {
        <div className={style.mainContainer}  style={{display: visibility}} >
             <Link to='/home' className={style.links}>HOME</Link>
             <Link to='/create' className={style.links}>FORM</Link>
-            <SearchBar onSearch={onSearch} />
+            <SearchBar />
             </div>
        </nav>
 
