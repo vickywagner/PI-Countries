@@ -38,5 +38,30 @@
 
 .number:hover {
     background-color: #151921da;
-    color: #02879f;
+    color: white;
 }
+
+.btn {
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    align-content: center;
+    background-color: rgba(109, 108, 108, 0.5);
+    font-weight: 300;
+    font-size: 1em;
+    padding: 1rem;
+    box-sizing: border-box;
+    height: 2rem;
+    margin: 12px;
+  
+    border: .1rem solid white;
+    border-radius: .4rem;
+   
+}
+  .btn:hover {
+    cursor: pointer;
+    transition: 0.3s;
+    border: .1rem solid rgb(247, 244, 237);
+    transform: scale(1.1);
+  }
+  

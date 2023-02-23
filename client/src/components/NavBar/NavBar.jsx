@@ -23,7 +23,7 @@ const NavBar = () => {
        <nav className={style.nav}>
        <div className={style.mainContainer}  style={{display: visibility}} >
             <Link to='/home' className={style.links}>HOME</Link>
-            <Link to='/create' className={style.links}>FORM</Link>
+            <Link to='/create' className={style.links}>CREATE ACTIVITY</Link>
             <SearchBar />
             </div>
        </nav>

@@ -5,13 +5,20 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3)), url("../../assets/mountain2.jpg");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.06)), url("../../assets/activity.jpg");
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
     background-attachment: fixed;
 }
-.detailContainer{
+.title{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1.7rem;
+    font-weight: bolder;
+}
+
+.contenedor{
+    padding: 2rem;
     border-radius: 12px;
     margin: .8rem;
     backdrop-filter: blur(50px);
@@ -22,31 +29,6 @@
         rgba(255, 251, 251, 0.12) 20%
       );
 }
-.title {
-    color: white;
-    font-size: 1.4rem;
-    margin:.3rem;
-}
- 
-.info {
-    color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    font-size: 1.1rem;
-    line-height: .5rem;
-    margin: 1rem;
-    align-items: center;
-    justify-content: center;
-
-}
-
-.containerImg{
-    display: flex;
-    justify-content: center;
-    margin: 1rem;
-    
-}
 
 .btn {
     display: inline-flex;
@@ -54,10 +36,10 @@
     align-content: center;
     background-color: rgba(109, 108, 108, 0.5);
     font-weight: 800;
-    font-size: 1.3em;
+    font-size: 1em;
     padding: 1rem;
     box-sizing: border-box;
-    height: 50px;
+    height: 2.5rem;
     margin: 12px;
   
     backdrop-filter: blur(1px);
@@ -73,4 +55,28 @@
 .link{
     text-decoration: none;
     color: white
+}
+
+
+
+
+
+.btnCreate {
+    background-color: black;
+    color: white;
+    font-size: 1rem;
+    border-radius: .5rem;
+    margin: .2rem;
+    margin-top: 1rem;
+    padding: .3rem;
+    cursor: pointer;
+    transition: .3s;
+    height: 2.3rem;
+    width: 6rem;
+}
+  
+.btnCreate:hover {
+    color: black;
+    background-color: white;
+ 
 }

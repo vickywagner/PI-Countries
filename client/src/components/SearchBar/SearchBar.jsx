@@ -5,7 +5,7 @@ import style from "../SearchBar/SearchBar.module.css"
 
 
 // FALTA buscar x id
-// falta limpiar el input ---> clase dai forms
+
 
 
 const SearchBar = () => {
@@ -21,6 +21,7 @@ const SearchBar = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         dispatch(searchByName(name));
+        setName('');
     }
 
     return(
@@ -29,7 +30,9 @@ const SearchBar = () => {
                 id="search"
                 type='text'
                 placeholder="Search..."
-                onChange={(event) => handleInputChange(event)} /> 
+                onChange={(event) => handleInputChange(event)} 
+                value={name} // actualizar el valor del input
+                /> 
             
             <button className ={style.btn}
                  type='submit'

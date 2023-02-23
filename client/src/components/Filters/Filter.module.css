@@ -1,0 +1,38 @@
+.container {
+    display: flex;
+    color: aliceblue;
+    padding: 1rem; 
+    height: 40px;
+    justify-content: space-between;
+}
+
+.selectContainer {
+    display: flex;
+    align-items: center;
+    margin: .4rem;
+}
+
+.select {
+    font-size: 15px;
+    padding: 5px 5px 5px 10px;
+    border-radius: 8px;
+    backdrop-filter: blur(100px);
+    background: linear-gradient(
+        to top,
+        right rgb(198, 196, 196) 0%,
+        rgba(255, 251, 251, 0.12) 20%
+      );
+    border: whi;
+    
+}
+
+.option {
+    background-color: rgba(54, 13, 13, 0.164);
+    color: black;
+    border-radius: 8px;
+}
+
+.select:hover {
+    outline: 2px solid rgba(54, 13, 13, 0.639);
+    cursor: pointer;
+}

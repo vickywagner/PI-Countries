@@ -6,12 +6,10 @@ import { Link } from "react-router-dom";
 function Card ({ id, name, continent, image }) { 
     return(
         <div className={style.cardContainer}>
-          <div className = {style.info}>
-            <h3>Name: {name}</h3>
-            <p>Continent: {continent}</p>
-           </div>
-            <Link to={`/detail/${id}`} >
-                <img src={image} alt={name} />
+            <Link to={`/detail/${id}`} className={style.link}>
+            <h3 className={style.name}>{name}</h3>
+            <p className={style.continente}>{continent}</p>
+            <img className={style.img} src={image} alt={name} />
             </Link>
         </div>
     );

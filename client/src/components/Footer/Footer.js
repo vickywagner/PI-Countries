@@ -5,12 +5,11 @@ const Footer = () => {
   return (
     <div className={style.footer}>
       <div className={style.infoLeft}>
-        <h5>Information</h5>
+        <h4>Information</h4>
         <span>
           Individual project soyHenry
           <br />
           Created by Victoria Wagner Trento
-          <br />
         </span>
       </div>
       <div className={style.infoRight}>

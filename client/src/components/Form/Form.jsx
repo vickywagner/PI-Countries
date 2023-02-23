@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import validation from './validation';
+import style from "../Form/Form.module.css"
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getActivities, postActivity } from '../../redux/actions';
@@ -25,6 +27,7 @@ const Form = () => {
     const dispatch = useDispatch();
     const countries = useSelector(state => state.countries)
 	const history = useHistory();
+    const [errors, setErrors] = useState({});
 
     const [input, setInput] = useState({
         name: '',
@@ -39,7 +42,13 @@ const Form = () => {
         setInput({
             ...input,
             [event.target.name] : event.target.value
-        })
+        });
+        setErrors(
+            validation({
+              ...input,
+              [event.target.name]: event.target.value,
+            })
+          );
         //console.log(input)
     }
 
@@ -52,21 +61,24 @@ const Form = () => {
     }
 
 //"handleSubmit" --> para manejar el envío del formulario.
-// NOT YET ---> Valida la información de "input" y, si es válida, envía una acción de "postActivities" al almacenamiento de Redux y navega a la página principal
+//Valida la información de "input" y, si es válida, envía una acción de "postActivities" al almacenamiento de Redux y navega a la página principal
     const handleSubmit = (event) => {
         event.preventSubmit();
-        console.log(input)
-        dispatch(postActivity(input))
-        alert("Activity created successfully");
-        setInput({
-            name: '',
-            difficulty: '',
-            duration: '',
-            season: '',
-            countries: [],
-        })
-        history.push("/home"); //me redirige a la ruta que le digo --> a la página principal
-
+        console.log(input);
+        if (!input.name || !input.difficulty || !input.duration || !input.season || !input.countries) {
+          return alert("Complete the form correctly before submitting it");
+        } else {
+            dispatch(postActivity(input))
+            alert("Activity created successfully");
+            setInput({
+                name: '',
+                difficulty: '',
+                duration: '',
+                season: '',
+                countries: [],
+            })
+            history.push("/home"); //me redirige a la ruta que le digo --> a la página principal
+        }
     }
 
 
@@ -76,15 +88,18 @@ const Form = () => {
 
     
     return(
-        <div>
-            <h1>CREAR UNA ACTIVIDAD</h1>
-            <Link to='home'>
-                <button>Back to home</button>
+        <div className={style.container}>
+
+           
+            <h1 className={style.title}>CREATE A TOURIST ACTIVITY</h1>
+            <Link className={style.link} to='home'>
+                <button className={style.btn}>Back to home</button>
             </Link>
 
+            <div className={style.contenedor} >
             <form  onSubmit={(event) => handleSubmit(event)}>
                 <div>
-                    <label>Name</label>
+                    <label>Name: </label>
                     <input 
                         type="text"
                         value= {input.name}
@@ -92,11 +107,11 @@ const Form = () => {
                         placeholder='Activity name..'
                         onChange={handleChange}
                         />
-            
+                    
                 </div>
 
                 <div>
-                <label>Difficulty</label>
+                <label>Difficulty: </label>
                     {/* <input 
                         type="number"
                         value= {input.difficulty}
@@ -116,7 +131,7 @@ const Form = () => {
                 </div>
 
                 <div>
-                <label>Duration</label>
+                <label>Duration: </label>
                     <input 
                         type="number"
                         value= {input.duration}
@@ -127,7 +142,7 @@ const Form = () => {
                 </div>
 
                 <div>
-                <label>Season</label>
+                <label>Season: </label>
                 <select name="season" >
                     <option value=''>--Select Season--</option>
                     <option value="Summer">Summer</option>
@@ -138,13 +153,13 @@ const Form = () => {
                 </div>
 
                 <div>
-                <label>Countries</label>
+                <label>Countries: </label>
                 <select name="country" onChange={(event) => handleSelect(event)}>
                     <option value='countries' >--Select Countries--</option>
-                    {countries?.map((country) => <option key={country.id} value={country.name} >{country.name}</option>)}           
+                    {countries?.map((country) => <option key={country.id} value={country.id} >{country.name}</option>)}           
                 </select>
-                {/* NO FUNCIONA TODAVIA
-                 <ul><li>{input.countries.map(el => el + ",")}</li></ul>} */}
+              
+               {/*   <ul><li>{input.countries.map(el => el + ",")}</li></ul> */}
                 </div>
 
                 {/* <div>
@@ -157,11 +172,12 @@ const Form = () => {
                         />
                 </div> */}
 
-                <button type="submit">Create</button>
+                <button type="submit" className={style.btnCreate}>Create</button>
                
 
 
             </form>
+            </div>
         </div>
     )
     }

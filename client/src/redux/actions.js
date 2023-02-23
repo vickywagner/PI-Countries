@@ -4,6 +4,7 @@ export const GET_COUNTRIES = 'GET_COUNTRIES';
 export const GET_DETAIL = 'GET_DETAIL';
 export const FILTER_CONTINENT = 'FILTER_CONTINENT';
 export const ORDER_BY_NAME = 'ORDER_BY_NAME';
+export const FILTER_POPULATION = 'FILTER_POPULATION';
 export const SEARCH_BY_NAME = 'SEARCH_BY_NAME';
 export const GET_ACTIVITIES = 'GET_ACTIVITIES';
 export const POST_ACTIVITY = 'POST_ACTIVITY';
@@ -35,7 +36,7 @@ export const getDetail = (id) => {
     };
 };
 
-//****** Filtrados ******** // NO FUNCIONAN todavia
+//****** Filtrados ******** // NO FUNCIONA todavia
 export const filterContinent = (payload) =>{
     return {
         type: FILTER_CONTINENT,
@@ -50,7 +51,15 @@ export const orderByName = (payload) => {
 	};
 };
 
+export const filterPopulation = (payload) => {
+	return {
+		type: FILTER_POPULATION,
+		payload,
+	};
+};
 
+
+///////////////
 //Para la searchBar *******
 export const searchByName = (name) => async dispatch => {
     try {

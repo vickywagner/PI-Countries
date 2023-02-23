@@ -16,20 +16,22 @@ const Detail = () => {
 
     return(
         <div className={style.container}>
-            <div className={style.containerImg}>
-                <img src={countryDetail?.image} alt={countryDetail?.name} />
-            </div>
-            <h2 className = {style.title}>{countryDetail?.name}</h2>
-            <h3 className = {style.title}>{countryDetail?.id}</h3>
-        
-            <div className = {style.info}>
-                <p>Continent: {countryDetail?.continent}</p>
-                <p>Capital: {countryDetail?.capital}</p>
-                <p>Subregion: {countryDetail?.subregion}</p>
-                <p>Area: {countryDetail?.area}km2</p>
-                <p>Population: {countryDetail?.population}</p>
-            </div>
+            <div className={style.detailContainer}>
+                <div className={style.containerImg}>
+                    <img src={countryDetail?.image} alt={countryDetail?.name} className={style.Img}/>
+                </div>
+                <h2 className = {style.title}>{countryDetail?.name}</h2>
+                <h3 className = {style.title}>{countryDetail?.id}</h3>
             
+                <div className = {style.info}>
+                    <p>Continent: {countryDetail?.continent}</p>
+                    <p>Capital: {countryDetail?.capital}</p>
+                    <p>Subregion: {countryDetail?.subregion}</p>
+                    <p>Area: {countryDetail?.area}km2</p>
+                    <p>Population: {countryDetail?.population}</p>
+                </div>
+            </div>
+                
             <button className={style.btn}>
                 <Link className={style.link} to='/home'>Back to Home</Link>
             </button>

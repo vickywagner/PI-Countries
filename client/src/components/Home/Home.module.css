@@ -8,4 +8,34 @@
     background-position: center center;
     background-size: cover;
     background-attachment: fixed;
+    
+}
+
+.containerCards{
+    display: grid;
+    grid-template-columns: repeat(3, minmax(10rem, 13rem));
+    gap:12rem;
+  
+}
+
+.btnReload {
+    background-color: white;
+    color: black;
+    font-size: 1rem;
+    border-radius: .5rem;
+    border: 1px solid black;
+    margin: .2rem;
+    margin-top: 1rem;
+    padding: .3rem;
+    cursor: pointer;
+    transition: .3s;
+    height: 2.1rem;
+    width: 10rem;
+}
+  
+.btnReload:hover {
+    color: white;
+    background-color: black;
+    transition: .5s;
+ 
 }
