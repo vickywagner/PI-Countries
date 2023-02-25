@@ -3,7 +3,9 @@ const validation = (input) => {
    // let dif = Number(input.difficulty);
     let duration = Number(input.duration);
   
+    
     if (!input.name) errors.name = "Required Field";
+    else if (input.name.length < 3) errors.name = "Must have more than three letters";
     else if (/[^A-Za-z0-9 ]+/g.test(input.name))
       errors.name = " Name cannot have special characters or tildes";
   
