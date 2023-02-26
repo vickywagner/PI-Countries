@@ -76,7 +76,6 @@ export const getActivities = () => async dispatch => {
 }
 
 export const postActivity = (payload) => {
-	console.log(payload);
 	return async function (dispatch) {
 		try {
 			const response = await axios.post('http://localhost:3001/activities', payload);
