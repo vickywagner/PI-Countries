@@ -1,7 +1,7 @@
-import React from "react";
+import React, {useEffect} from "react";
 import style from "../Filters/Filter.module.css"
-import { useDispatch } from "react-redux";
-import { filterContinent, orderByName, filterPopulation } from "../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { filterContinent, orderByName, filterPopulation, filterByActivities, getActivities } from "../../redux/actions";
 
 
 // filtrar por continente y por tipo de actividad turística.
@@ -10,8 +10,16 @@ import { filterContinent, orderByName, filterPopulation } from "../../redux/acti
 
 const Filter = ({ currentPage, setCurrentPage }) => {
   const dispatch = useDispatch();
+  //const allCountries = useSelector((state) => state.countries);
+  
+  const activities = useSelector((state) => state.activities);
 
 	
+  useEffect(() => {
+    dispatch(getActivities());
+  }, [dispatch]);
+
+
   //****** ordenar ASC- DESC ********
 	const handleSort = (event) => {
     event.preventDefault();
@@ -31,6 +39,11 @@ const handlePopulation = (event) => {
   setCurrentPage(1);
 };
 
+function handleActivity(e) {
+  e.preventDefault();
+  dispatch(filterByActivities(e.target.value));
+  setCurrentPage(1);
+}
 
 //////////////////////////////////////////
   return (
@@ -60,12 +73,24 @@ const handlePopulation = (event) => {
         <select className={style.select} onChange={(event) => handlePopulation(event)}> 
             <option value={"High"} className={style.option} >Higher Population</option>
             <option value={"low"} className={style.option} >Less Population</option>
-            <option value='Activities'>Tourist Activity</option>
           </select>
         </div>
 
-   </div>
- 
+
+      <div className={style.selectContainer} >
+        <select onChange={(e) => handleActivity(e)}  className={style.select} >
+          <option value='All' className={style.option}>All Activities</option>
+            {activities.map((el) => {
+              return (
+                <option value={el.name} key={el.id}>
+                  {el.name}
+                </option>
+              );
+            })}
+        </select>
+      </div>
+      
+      </div>
      ) 
      // lo que permite qacceder a esa accion es el value
  }
