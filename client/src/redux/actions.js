@@ -1,16 +1,18 @@
 import axios from 'axios';
 
+// ******* Action Types *******
 export const GET_COUNTRIES = 'GET_COUNTRIES';
 export const GET_DETAIL = 'GET_DETAIL';
 export const FILTER_CONTINENT = 'FILTER_CONTINENT';
 export const ORDER_BY_NAME = 'ORDER_BY_NAME';
 export const FILTER_POPULATION = 'FILTER_POPULATION';
+export const FILTER_BY_ACTIVITIES = 'FILTER_BY_ACTIVITIES'
 export const SEARCH_BY_NAME = 'SEARCH_BY_NAME';
 export const GET_ACTIVITIES = 'GET_ACTIVITIES';
 export const POST_ACTIVITY = 'POST_ACTIVITY';
 
 
-//******ACTIONS*****
+// ****** ACTIONS *****
 
 export const getCountries = () => {
     return async function (dispatch) {
@@ -36,7 +38,7 @@ export const getDetail = (id) => {
     };
 };
 
-//****** Filtrados ******** // NO FUNCIONA todavia
+//************* FILTRADOS *****************
 export const filterContinent = (payload) =>{
     return {
         type: FILTER_CONTINENT,
@@ -58,8 +60,15 @@ export const filterPopulation = (payload) => {
 	};
 };
 
+export function filterByActivities(activity) {
+    return {
+      type: FILTER_BY_ACTIVITIES,
+      payload: activity,
+    };
+  }
 
-///////////////
+//////////////////////////////////////////////
+
 //Para la searchBar *******
 export const searchByName = (name) => async dispatch => {
     try {
@@ -70,25 +79,25 @@ export const searchByName = (name) => async dispatch => {
     }
 }
 
+//********** ACTIVITIES (GET Y POST) *************
 export const getActivities = () => async dispatch => {
-    let json = await axios.get('/activities')
+    try {
+    let json = await axios.get('http://localhost:3001/activities')
     return dispatch({ type: GET_ACTIVITIES, payload: json.data })
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 export const postActivity = (payload) => {
 	return async function (dispatch) {
 		try {
-			const response = await axios.post('http://localhost:3001/activities', payload);
-			dispatch({
-				type: POST_ACTIVITY,
-				payload: response.data,
-			});
+	        await axios.post('http://localhost:3001/activities', payload);
+			alert ("Activity created successfully")
+            return dispatch({ type: POST_ACTIVITY });
 		} catch (error) {
             console.log(error)
-			// dispatch({
-				// type: ERROR,
-				// payload: error,
-			//});
+            alert ("Activity not created")
 		}
 	};
 };

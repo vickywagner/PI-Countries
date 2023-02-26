@@ -1,4 +1,4 @@
-import { GET_COUNTRIES, GET_DETAIL, FILTER_CONTINENT, ORDER_BY_NAME, FILTER_POPULATION, SEARCH_BY_NAME, GET_ACTIVITIES, POST_ACTIVITY } from "./actions";
+import { GET_COUNTRIES, GET_DETAIL, FILTER_CONTINENT, ORDER_BY_NAME, FILTER_POPULATION, FILTER_BY_ACTIVITIES, SEARCH_BY_NAME, GET_ACTIVITIES, POST_ACTIVITY } from "./actions";
 
 //*** ESTADOS ****
 const initialState = {
@@ -16,7 +16,8 @@ const reducer = (state = initialState, action ) => {
       	return {
             ...state,
             countries: action.payload,
-			      allCountries: action.payload
+			      allCountries: action.payload,
+          
         };
 
     case GET_DETAIL:
@@ -63,8 +64,8 @@ const reducer = (state = initialState, action ) => {
 				countries: sortedArr,
 			};
             
-        case FILTER_POPULATION:
-            let sortedArrPop =
+    case FILTER_POPULATION:
+      let sortedArrPop =
             action.payload === "low"
               ? state.countries.slice().sort(function (a, b) {
                   if (a.population > b.population) {
@@ -84,7 +85,7 @@ const reducer = (state = initialState, action ) => {
                   }
                   return 0;
                 });
-          return {
+        return {
             ...state,
             countries: sortedArrPop,
         };
@@ -99,6 +100,21 @@ const reducer = (state = initialState, action ) => {
         return {
             ...state,
     }; 
+
+    case FILTER_BY_ACTIVITIES:
+      const countriesActivities = state.allCountries
+      const activityFilter =
+        action.payload === "All"
+          ? countriesActivities
+          : countriesActivities.filter(
+              (e) =>
+                e.activities &&
+                e.activities.map((e) => e.name).includes(action.payload)
+            );
+      return {
+        ...state,
+        countries: activityFilter,
+      };
     
 	default:
         return {...state};
