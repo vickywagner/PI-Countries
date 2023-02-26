@@ -2,27 +2,12 @@ import React from "react";
 import style from "../Home/Home.module.css";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCountries } from "../../redux/actions";
+import { getCountries, getActivities } from "../../redux/actions";
 import Card from "../Card/Card";
 import Filters from "../Filters/Filters";
 import Pagination from "../Pagination/Pagination";
 import Footer from "../Footer/Footer";
 
-// HOME PAGE | la página principal de tu SPA debe contener:
-
-      // SearchBar: un input de búsqueda para encontrar países por nombre.
-      // Sector en el que se vea un listado de cards con los países. Al iniciar deberá cargar los 
-      //primeros resultados obtenidos desde la ruta GET /countries y deberá mostrar su:
-      // Imagen de la bandera.
-      // Nombre.
-      // Continente.
-      // Cuando se le hace click a una Card deberá redirigir al detalle de ese país específico.
-// Botones/Opciones para filtrar por continente y por tipo de actividad turística.
-      // Botones/Opciones para ordenar tanto ascendentemente como descendentemente los países por orden alfabético
-      // y por cantidad de población.
-      // Paginado: el listado de países se hará por partes. Tu SPA debe contar con un paginado que muestre un 
-      //total de 10 países por página.
- 
 const Home = () => {
    
    const dispatch = useDispatch();
@@ -38,7 +23,6 @@ const Home = () => {
    const paginado = (pageNumber) => {
       setcurrentPage(pageNumber)
    }
-   
 
 // ****** Boton reload countries ******
   const handleClick = (event)=> {
