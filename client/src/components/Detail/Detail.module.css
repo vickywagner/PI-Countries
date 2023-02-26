@@ -8,7 +8,9 @@
     background-position: center center;
     background-size: cover;
     background-attachment: fixed;
+
 }
+
 .detailContainer{
     border-radius: 12px;
     margin: .8rem;
@@ -20,6 +22,7 @@
         rgba(255, 251, 251, 0.12) 20%
       );
 }
+
 .title {
     color: white;
     font-size: 1.4rem;
@@ -71,4 +74,43 @@
 .link{
     text-decoration: none;
     color: white
+}
+
+
+.btnCreate {
+    background-color: black;
+    color: white;
+    font-size: 1rem;
+    border-radius: .5rem;
+    margin: .2rem;
+    margin-top: 1rem;
+    padding: .3rem;
+    cursor: pointer;
+    transition: .3s;
+    height: 2.3rem;
+    width: 8rem;
+}
+  
+.btnCreate:hover {
+    color: black;
+    background-color: white;
+ 
+}
+  
+.link{
+    text-decoration: none;
+    color: white
+}
+.activityContainer{
+   
+    border-radius: 12px;
+    margin: .8rem;
+    backdrop-filter: blur(50px);
+    color: black;
+    background: linear-gradient(
+        to top,
+        right rgb(198, 196, 196) 0%,
+        rgba(255, 251, 251, 0.12) 20%
+      );
+    
 }

@@ -31,10 +31,30 @@ const Detail = () => {
                     <p>Population: {countryDetail?.population}</p>
                 </div>
             </div>
-                
-            <button className={style.btn}>
+
+            <div className={style.activityContainer}>
+            <h3 className = {style.info}>Country Activities</h3>
+           
+            {
+                countryDetail.Activities&&countryDetail.Activities.length ? 
+            countryDetail.Activities.map(activity => {
+                return (
+                        <div className={style.info}>
+                            <h4>{activity.name}</h4>
+                            <p>Difficulty: {activity.difficulty}</p>
+                            <p >Duration: {activity.duration} horas</p>
+                            <p>Season: {activity.season}</p>
+                        </div>
+                        ) 
+                 }) 
+                 : <p className = {style.info}>There are no activities in this country</p> 
+            }
+            </div>
+             <Link className={style.link} to="/create"><button className={style.btnCreate}>Create Activity</button></Link>               
+        
+            {/* <button className={style.btn}>
                 <Link className={style.link} to='/home'>Back to Home</Link>
-            </button>
+            </button> */}
         </div>
     )
 }
