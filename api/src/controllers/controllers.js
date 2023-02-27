@@ -1,5 +1,6 @@
 const {allCountries, findCountries } = require('../Service/countriesService');
 
+//controlador de ruta que maneja la solicitud GET/countries ---> todos y x query
 
 const totalCountries = async (req, res) => {
     try{

@@ -13,7 +13,6 @@ module.exports = (sequelize) => {
   // Área.                      area
   // Población. *               population
 
-
   sequelize.define('Country', {
     id: {
       type: DataTypes.STRING(3),  //ID (Código de tres letras). *

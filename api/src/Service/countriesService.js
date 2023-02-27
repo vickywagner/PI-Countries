@@ -13,7 +13,7 @@ const getApiInfo = async () => {  // Trabajamos de manera asincrona porque no sa
 			id: country.cca3,
 			name: country.name.common,
 			image: country.flags[1],
-			continent: country.region,
+			continent: country.continents[0],
 			capital: country.capital ? country.capital[0] : `This country doesn't have capital.`,
 			subregion: country.subregion ? country.subregion : `This country doesn't have subregion.`,
 			area: country.area,     // area: `${country.area}km2`,
@@ -25,16 +25,15 @@ const getApiInfo = async () => {  // Trabajamos de manera asincrona porque no sa
     
 	try{ 
 		const countries = await Country.findAll();
-		if(!countries.length) {
-		await Country.bulkCreate(apiInfo)
-   	}
+		if(!countries.length) {             //Si no existen
+		await Country.bulkCreate(apiInfo)  // utilizamos "bulkCreate" para insertar los objetos creados la db.
+   	}                               //Country.bulkCreate(apiInfo) inserta en la tabla los objetos almacenados en apiInfo
    } catch (error) {
      		console.log({ error: error.message });
 		}
 };
 
-
-
+//buscamos todos los paises
 const allCountries = async () => {
     try{
         const paises = await Country.findAll({
@@ -50,6 +49,7 @@ const allCountries = async () => {
         console.log({ error: error.message }); 
     }
 ;}
+
 
 const findCountries = async (name) => {
     try{
@@ -75,7 +75,7 @@ const findCountries = async (name) => {
                 through: { attributes: [] }
             }] 
         })  
-        if(country) { // Si encuentra al menos 1 país que coincide con el valor de name --> res 200
+        if(country) { // Si encuentra al menos 1 país que coincide con el valor de name --> lo devolvemos
             return country;
         } else {
           throw new Error("Country not found");

@@ -16,7 +16,7 @@ module.exports = (sequelize) => {
     name: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true
+        // unique: true // VER 
     },
 
     difficulty: {   
@@ -50,7 +50,7 @@ module.exports = (sequelize) => {
         type: DataTypes.ENUM('Summer', 'Autumn', 'Winter', 'Spring'),
         allowNull: false
      },
-     createInDb:{   // creamos esta propiedad "creado en BD" por si queremos llamar
+     createInDb:{   // creamos esta propiedad "creado en BD" por si queremos filtrar
         type: DataTypes.BOOLEAN,
         allowNull: false,
         defaultValue: true,

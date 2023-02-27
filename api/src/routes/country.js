@@ -7,7 +7,7 @@ const router = Router();
 // //***********Ruta general de todos los paises o por Query**********
 router.get("/", totalCountries);
 
-
+//controllers y service
 
 
 //************Ruta a cada Pais segun ID***********

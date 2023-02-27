@@ -41,7 +41,7 @@ router.post("/", async(req,res,next)=>{
                           newActivity.addCountries(searchId)
                           res.send(newActivity)
                       }
-              ''
+              
               }else{
                       return res.status(408).send("Enter a valid season (summer,autumn, winter, spring)");
               }
