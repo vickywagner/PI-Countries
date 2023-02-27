@@ -9,13 +9,11 @@ import { Route } from 'react-router-dom';
 
 function App() {
 
-  
-
   //{location.pathname !== '/' && <NavBar />}
   return ( 
     <div className="App">
         <Route path='/' render={() => <NavBar />} />
-        <Route exact path='/' component={ LandingPage} />
+        <Route exact path='/' component={LandingPage} />
         <Route path='/detail/:id' component={Detail} />
         <Route path='/create' component={Form} />
         <Route path='/home' component={Home} />

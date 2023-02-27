@@ -23,7 +23,8 @@
     font-stretch: condensed;
     margin: .4rem;
     margin-right: 5px;
-    height: 30px;
+    height: 1.9rem;
+    width: 1.3rem;
     padding: .4rem;
     border: .1rem solid white;
     border-radius: .4rem;
@@ -39,6 +40,15 @@
 .number:hover {
     background-color: #151921da;
     color: white;
+}
+
+.active {
+    background-color: black;
+    color: white;
+    border-radius: .4rem;
+    padding: .4rem;
+    height: 1.9rem;
+    width: 1.3rem;
 }
 
 .btn {
@@ -58,10 +68,38 @@
     border-radius: .4rem;
    
 }
-  .btn:hover {
+.btn:hover {
     cursor: pointer;
     transition: 0.3s;
     border: .1rem solid rgb(247, 244, 237);
     transform: scale(1.1);
-  }
+}
   
+
+
+
+/* para pantallas con ancho máximo de 600px */
+/* @media (max-width: 600px) {
+    .paginadoNavContainer {
+        display: flex;
+        justify-content: center;
+    }
+    .paginadoList {
+
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-flow: row;
+      }
+    .number {
+      font-size: 14px;
+    }
+    .btn {
+      font-size: 0.8em;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .paginadoList {
+        grid-template-columns: repeat(3, 1fr);
+      flex-direction: column;
+    }
+  } */

@@ -16,7 +16,15 @@
   justify-content: center;
   align-items: center;
   color: white;
-  margin: 12px;
+
+}
+
+.text {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: white;
+  margin-top: 0rem;
+
 }
 
 .btn {
@@ -25,20 +33,22 @@
   align-items: center;
   align-content: center;
   background-color: rgba(109, 108, 108, 0.5);
-  font-weight: 900;
+  font-weight: 400;
   font-size: 1.5em;
   padding: 1rem;
   box-sizing: border-box;
   height: 50px;
   margin: 12px;
+  margin-top: .5rem;
+  border: .1rem solid white;
+  border-radius: .4rem;
 
   backdrop-filter: blur(1px);
 }
 .btn:hover {
   cursor: pointer;
   transition: 0.2s;
-  transform: translateY(-1px);
-  border-bottom: 1px solid white;
+  transform: translateY(-2px);
 }
 
 .link{

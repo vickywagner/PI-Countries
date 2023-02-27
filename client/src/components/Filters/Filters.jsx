@@ -5,15 +5,13 @@ import { filterContinent, orderByName, filterPopulation, filterByActivities, get
 
 
 // filtrar por continente y por tipo de actividad turística.
-// Botones/Opciones para ordenar tanto ascendentemente como descendentemente 
-//los países por orden alfabético y por cantidad de población.
+      // Botones/Opciones para ordenar tanto ascendentemente como descendentemente 
+      //los países por orden alfabético y por cantidad de población.
 
 const Filter = ({ currentPage, setCurrentPage }) => {
   const dispatch = useDispatch();
-  //const allCountries = useSelector((state) => state.countries);
   
   const activities = useSelector((state) => state.activities);
-
 	
   useEffect(() => {
     dispatch(getActivities());
@@ -22,7 +20,6 @@ const Filter = ({ currentPage, setCurrentPage }) => {
 
   //****** ordenar ASC- DESC ********
 	const handleSort = (event) => {
-    event.preventDefault();
 		dispatch(orderByName(event.target.value));
 		setCurrentPage(1);
 	};
@@ -34,13 +31,11 @@ const Filter = ({ currentPage, setCurrentPage }) => {
 
 //********** ordenar x POBLACION ***************
 const handlePopulation = (event) => {
-  event.preventDefault();
   dispatch(filterPopulation(event.target.value));
   setCurrentPage(1);
 };
 
 function handleActivity(e) {
-  e.preventDefault();
   dispatch(filterByActivities(e.target.value));
   setCurrentPage(1);
 }
@@ -76,6 +71,11 @@ function handleActivity(e) {
           </select>
         </div>
 
+      {/* <div className={style.selectContainer}>
+        <select className={style.select} onChange={handleActivity}>
+            <option value='activities' className={style.option} >Tourist Activities</option>
+          </select>
+      </div> */}
 
       <div className={style.selectContainer} >
         <select onChange={(e) => handleActivity(e)}  className={style.select} >
@@ -89,10 +89,10 @@ function handleActivity(e) {
             })}
         </select>
       </div>
-      
-      </div>
+
+    </div>
      ) 
-     // lo que permite qacceder a esa accion es el value
+     // lo que permite acceder a esa accion es el value
  }
 
  export default Filter;

@@ -27,10 +27,7 @@ const NavBar = () => {
             <SearchBar />
             </div>
        </nav>
-
-// VER SI HACEMOS FAV <Link to='/favorites' className={style.about} >Favorites</Link>
     )
-    
 }
 
 export default NavBar;

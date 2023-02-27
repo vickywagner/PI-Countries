@@ -5,7 +5,7 @@ import style from "../Pagination/Pagination.module.css"
 const Pagination = ({countriesPerPage, allCountries, paginado, currentPage, setcurrentPage}) => {
     const pageNumbers = [];
 
-    //recorro el [] en que tomo el num redondo de lo que resulta dividir todos los paises x los paises x pag que quierp
+    //recorro el [] en que tomo el num redondo de lo que resulta dividir todos los paises x los paises x pag que quiero
     for(let i=1; i<= Math.ceil(allCountries/countriesPerPage); i++){
         pageNumbers.push(i)  
     }
@@ -26,8 +26,8 @@ const Pagination = ({countriesPerPage, allCountries, paginado, currentPage, setc
                
                 </li>
                 { pageNumbers && 
-                        pageNumbers.map(number =>( 
-                    <li key={number} className={style.number}>
+                        pageNumbers.map(number =>(                  
+                    <li key={number} className={`${style.number} ${currentPage === number && style.active}`}>  {/* para marcar en la pag que estamos */}
                         <a onClick={() => paginado(number)}>{number}</a>  
                     </li>
                 ))

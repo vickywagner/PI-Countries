@@ -44,7 +44,16 @@
 
 
 
-
+/* @keyframes grow {
+    0% {
+      transform: scale(1) translateY(0px);
+    }
+    30% {
+      transform: scale(1.2) translateY(-100px);
+    }
+  }
+  
+   */
   @media (max-width: 400px) {
 
   .containerCards{
@@ -55,6 +64,27 @@
     margin: 0px;
   }
   }
+
+
+
+/* Estilos para pantallas de hasta 600px de ancho */
+/* @media (max-width: 400px) {
+    .container {
+        display: flex;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.06)), url("../../assets/landscape.jpg");
+        background-repeat:repeat;
+        background-position: center center;
+        background-size: cover;
+        background-attachment: fixed;
+        
+    }
+    .containerCards {
+      grid-template-columns: repeat(1, minmax(10rem, 13rem));
+      gap: 2rem;
+    }
+  }
+ */
+
 
   
 /* Estilos para pantallas de hasta 600px de ancho */

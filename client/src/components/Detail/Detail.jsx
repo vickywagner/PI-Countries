@@ -31,24 +31,27 @@ const Detail = () => {
                     <p>Population: {countryDetail?.population}</p>
                 </div>
             </div>
-
+            
             <div className={style.activityContainer}>
-            <h3 className = {style.info}>Country Activities</h3>
-           
+            <h3 className = {style.textActivity}>ACTIVITIES:</h3>
+            <div className={style.containerAllActivity}>
             {
                 countryDetail.Activities&&countryDetail.Activities.length ? 
             countryDetail.Activities.map(activity => {
                 return (
-                        <div className={style.info}>
-                            <h4>{activity.name}</h4>
-                            <p>Difficulty: {activity.difficulty}</p>
-                            <p >Duration: {activity.duration} horas</p>
+                        <div className={style.cardActivity}>
+                            <h3>{activity.name}</h3>
+                            <div className={style.info}>
+                            <p >Difficulty: Level {activity.difficulty}</p>
+                            <p >Duration: {activity.duration} hours</p>
                             <p>Season: {activity.season}</p>
+                        </div>
                         </div>
                         ) 
                  }) 
                  : <p className = {style.info}>There are no activities in this country</p> 
             }
+            </div>
             </div>
              <Link className={style.link} to="/create"><button className={style.btnCreate}>Create Activity</button></Link>               
         

@@ -8,7 +8,8 @@ const LandingPage = () => {
    	<div className={style.container}>
          <video src={Beach} muted autoPlay loop />
          <div className={style.content}>
-         <h1>Welcome to my website about countries.</h1>
+         <h1>Welcome to my website about countries</h1>
+         <p className={style.text}>Let's discover the world together</p>
          <Link className={style.link} to="/home">
             <button className={style.btn} >Start</button>
          </Link>

@@ -7,7 +7,7 @@ import Card from "../Card/Card";
 import Filters from "../Filters/Filters";
 import Pagination from "../Pagination/Pagination";
 import Footer from "../Footer/Footer";
-
+ 
 const Home = () => {
    
    const dispatch = useDispatch();

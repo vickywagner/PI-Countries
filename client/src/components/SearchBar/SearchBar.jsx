@@ -3,17 +3,11 @@ import { useDispatch } from "react-redux";
 import { searchByName } from "../../redux/actions";
 import style from "../SearchBar/SearchBar.module.css"
 
-
-// FALTA buscar x id
-
-
-
 const SearchBar = () => {
     const dispatch = useDispatch();
     const [name, setName] = useState(''); // seteo mi estado como string
 
     const handleInputChange = (event) => {
-        event.preventDefault();
         setName(event.target.value); //mi estado pasa a ser el event.target.value
         //console.log(name) 
     }

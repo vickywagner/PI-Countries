@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { postActivity, getCountries } from "../../redux/actions"
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import style from "./Form.module.css";
 import validation from '../Form/validation';
 
 function Form() {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(getCountries());
@@ -15,7 +16,7 @@ function Form() {
   
   const listCountries = useSelector((state) => state.countries);
 
-  const [errors, setErrors] = useState({}); // este estado local es para, las validaciones(del formulario controlado)
+  const [errors, setErrors] = useState({}); // este estado local es para las validaciones(del formulario controlado)
   const [input, setInput] = useState({
     name: "",
     difficulty: "",
@@ -28,7 +29,8 @@ function Form() {
     dispatch(getCountries());
   }, [dispatch]);
   
-//"handleChange" --> para manejar el cambio de estado de los demás campos de "input". Actualiza el estado de "input" con la nueva información.
+//"handleChange" --> para manejar el cambio de estado de los demás campos de "input". 
+//Actualiza el estado de "input" con la nueva información.
   function handleChange(e) {
     setInput({
       ...input,
@@ -38,20 +40,36 @@ function Form() {
       validation({
         ...input,
         [e.target.name]: e.target.value, // me copio todo lo que venga del formulario , en el caso de que en alguno
-      })
-    ); // no cumpla con las validaciones, se va a poner un texto advirtiendo
+      })                                      // no cumpla con las validaciones, se va a poner un texto advirtiendo
+    ); 
   }
 
 //"handleSelect" guarda en un [] todo lo que seleccione
   function handleSelect(e) {
-    setInput({
-      ...input,
-      idCountry: [...input.idCountry, e.target.value],
-    });
+    setInput((input) => {
+      if (!input.idCountry.includes(e.target.value)) {
+        return {
+          ...input,
+          idCountry: [...input.idCountry, e.target.value],
+        };
+      } else {
+        alert("No se puede incluir un país duplicado");
+        return {
+          ...input,
+          idCountry: [...input.idCountry],
+        };
+      } 
+    })
+    // setInput({
+    //   ...input,
+    //   idCountry: [...input.idCountry, e.target.value],
+    // });
   }
 
+  
 //"handleSubmit" --> para manejar el envío del formulario.
-//Valida la información de "input" y, si es válida, envía una acción de "postActivities" al almacenamiento de Redux y navega a la página principal
+//Valida la información de "input" y, si es válida, envía una acción de "postActivities" al almacenamiento 
+// de Redux y navega a la página principal
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(postActivity(input));
@@ -63,15 +81,17 @@ function Form() {
         season: "",
         idCountry: [],
     });
+    history.push("/home");
   }
 
-//"handleDelete" --> para borrar los paises(id) seleccionados en el form
+//"handleDelete" --> para borrar los paises(id) q haya seleccionado en el form, va a crear un nuevo array con
+// todos los que no sean el elemento que le hice click
   function handleDelete(e) {
     setInput({
       ...input,
       idCountry: input.idCountry.filter((id) => id !== e),
-    }); //este es para borrar algun id que haya elegido, va a creat un nuevo array con todos los que no sean
-  } //    el elemento que le hice click
+    }); 
+  } 
 
   return (
     <div className={style.container}>
@@ -137,14 +157,13 @@ function Form() {
                 handleChange(e);
               }} >
                     <option value=''>Select Season</option>
-                     <option value="Summer">Summer</option>
-                     <option value="Autumn">Autumn</option>
-                     <option value="Winter">Winter</option>
+                    <option value="Summer">Summer</option>
+                    <option value="Autumn">Autumn</option>
+                    <option value="Winter">Winter</option>
                     <option value="Spring">Spring</option>
                  </select>                
                {errors.season && <p style={{color: 'red'}}>{errors.season}</p>}
                 </div>
-
 
           <p >Countries: </p>
           <select onChange={(e) => handleSelect(e)} className={style.selectInputs}>
