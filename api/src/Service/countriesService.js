@@ -18,6 +18,7 @@ const getApiInfo = async () => {  // Trabajamos de manera asincrona porque no sa
 			subregion: country.subregion ? country.subregion : `This country doesn't have subregion.`,
 			area: country.area,     // area: `${country.area}km2`,
 			population: country.population,   
+      timezones: country.timezones[0],
     	}
 	 	return map;
    });
