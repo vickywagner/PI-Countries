@@ -7,38 +7,18 @@
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
-    background-attachment: fixed;
-    
+    background-attachment: fixed; 
 }
 
 .containerCards{
-    display: grid;
+    /* display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr); */
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     gap: 1rem;
-}
-
-.btnReload {
-    background-color: white;
-    color: black;
-    font-size: 1rem;
-    border-radius: .5rem;
-    border: 1px solid black;
-    margin: .2rem;
-    margin-top: 1rem;
-    padding: .3rem;
-    cursor: pointer;
-    transition: .3s;
-    height: 2.1rem;
-    width: 10rem;
-}
-  
-.btnReload:hover {
-    color: white;
-    background-color: black;
-    transition: .5s;
- 
+    align-items: center;
 }
 
 

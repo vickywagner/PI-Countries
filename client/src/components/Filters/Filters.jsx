@@ -1,12 +1,8 @@
 import React, {useEffect} from "react";
 import style from "../Filters/Filter.module.css"
 import { useDispatch, useSelector } from "react-redux";
-import { filterContinent, orderByName, filterPopulation, filterByActivities, getActivities } from "../../redux/actions";
+import { filterContinent, orderByName, filterPopulation, filterByActivities, getActivities, getCountries } from "../../redux/actions";
 
-
-// filtrar por continente y por tipo de actividad turística.
-      // Botones/Opciones para ordenar tanto ascendentemente como descendentemente 
-      //los países por orden alfabético y por cantidad de población.
 
 const Filter = ({ currentPage, setCurrentPage }) => {
   const dispatch = useDispatch();
@@ -26,21 +22,31 @@ const Filter = ({ currentPage, setCurrentPage }) => {
 
   //******** ordenar x CONTINENTES ********
   function handleContinent (event){
-    dispatch(filterContinent(event.target.value))
-  }
+    dispatch(filterContinent(event.target.value));
+    setCurrentPage(1); 
+    }
 
 //********** ordenar x POBLACION ***************
 const handlePopulation = (event) => {
   dispatch(filterPopulation(event.target.value));
-  setCurrentPage(1);
+  setCurrentPage(1); 
 };
 
+//********** ordenar x Actividades ***************
 function handleActivity(e) {
   dispatch(filterByActivities(e.target.value));
-  setCurrentPage(1);
+  setCurrentPage(1); 
 }
 
 //////////////////////////////////////////
+
+// ****** Boton reload countries ******
+const handleClick = (event)=> {
+  event.preventDefault();
+  dispatch(getCountries());
+}
+
+
   return (
     <div className={style.container}>
    	 
@@ -71,24 +77,23 @@ function handleActivity(e) {
           </select>
         </div>
 
-      {/* <div className={style.selectContainer}>
-        <select className={style.select} onChange={handleActivity}>
-            <option value='activities' className={style.option} >Tourist Activities</option>
-          </select>
-      </div> */}
-
       <div className={style.selectContainer} >
         <select onChange={(e) => handleActivity(e)}  className={style.select} >
           <option value='All' className={style.option}>All Activities</option>
-            {activities.map((el) => {
-              return (
-                <option value={el.name} key={el.id}>
-                  {el.name}
-                </option>
-              );
-            })}
+          {activities.length
+            ? activities.map((el) => {
+                return (
+                  <option value={el.name} key={el.id}>
+                    {el.name}
+                  </option>
+                )
+            })
+            : <p>No activities have been created</p> 
+          }
         </select>
       </div>
+
+      <button onClick={handleClick} className={style.btnReload}>Clean Filters</button> 
 
     </div>
      ) 

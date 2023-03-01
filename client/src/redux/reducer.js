@@ -6,7 +6,8 @@ const initialState = {
     allCountries: [],
     activities: [],
     detail: {},
-    //sorting: [],
+    filterActivity:'All',
+    filterContinent:'All',
 }
 
 //******* CASOS *****
@@ -17,7 +18,6 @@ const reducer = (state = initialState, action ) => {
             ...state,
             countries: action.payload,
 			      allCountries: action.payload,
-          
         };
 
     case GET_DETAIL:
@@ -28,10 +28,18 @@ const reducer = (state = initialState, action ) => {
 
     case FILTER_CONTINENT:
         const allCountries = state.allCountries;
-        const continentFiltered = action.payload === 'All' ? allCountries : allCountries.filter((country) => country.continent === action.payload);
+        let continentFiltered = action.payload === 'All' 
+          ? allCountries
+          : allCountries.filter((country) => country.continent === action.payload);
+        
+        if(state.filterActivity !== 'All'){
+          continentFiltered = continentFiltered.filter((e) => e.Activities.find(a => a.name === state.filterActivity));
+           }
+          
         return {
               ...state,
               countries: continentFiltered,
+              filterContinent: action.payload,
         };
 
     case SEARCH_BY_NAME:
@@ -102,18 +110,23 @@ const reducer = (state = initialState, action ) => {
     }; 
 
     case FILTER_BY_ACTIVITIES:
-      const countriesActivities = state.allCountries
+      let countriesActivities = state.allCountries
+
+      if(state.filterContinent!=='All'){
+        //console.log(state.filterContinent)
+        countriesActivities= countriesActivities.filter(e=>e.continent===state.filterContinent)
+      }
+
       const activityFilter =
         action.payload === "All"
           ? countriesActivities
-          : countriesActivities.filter(
-              (e) =>
-                e.activities &&
-                e.activities.map((e) => e.name).includes(action.payload)
+          : countriesActivities.filter( 
+            (e) => e.Activities && e.Activities.find(a => a.name === action.payload )
             );
       return {
         ...state,
         countries: activityFilter,
+        filterActivity: action.payload,
       };
     
 	default:

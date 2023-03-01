@@ -44,15 +44,15 @@ function Form() {
     ); 
   }
 
-//"handleSelect" guarda en un [] todo lo que seleccione
+//"handleSelect" guarda en un [] todo lo que seleccione ---> COUNTRIES
   function handleSelect(e) {
     setInput((input) => {
-      if (!input.idCountry.includes(e.target.value)) {
-        return {
+      if (!input.idCountry.includes(e.target.value)) {  //verificamos si el valor de e.target.value (el valor seleccionado) NO está incluido en el arreglo idCountry del estado anterior input.
+        return {   // si NO esta, se crea un nuevo obj que copia el estado anterior (input) y agrega el valor de e.target.value al arreglo idCountry
           ...input,
           idCountry: [...input.idCountry, e.target.value],
         };
-      } else {
+      } else { // Si e.target.value SI está incluido en el [] idCountry, mostranos un alert y se devuelve un nuevo obj que copia todas las propiedades del estado anterior (input) y mantiene el arreglo idCountry sin cambios.
         alert("No se puede incluir un país duplicado");
         return {
           ...input,
@@ -60,10 +60,6 @@ function Form() {
         };
       } 
     })
-    // setInput({
-    //   ...input,
-    //   idCountry: [...input.idCountry, e.target.value],
-    // });
   }
 
   
@@ -165,20 +161,21 @@ function Form() {
                {errors.season && <p style={{color: 'red'}}>{errors.season}</p>}
                 </div>
 
-          <p >Countries: </p>
+          <label className={style.labels}>Countries: </label>
           <select onChange={(e) => handleSelect(e)} className={style.selectInputs}>
             {listCountries?.map((t) => {
               return <option value={t.id}> {t.name} </option>;
             })}
           </select>
           
-            <button type="submit" className={style.btnCreate}>
-              {" "}
+            <button type="submit" className={style.btnCreate}   // desabilitamos el boton si el form tiene errores
+             disabled={!Object.keys(errors).length ? false : true}  // Si no hay errores, disabled será establecido en false. 
+                                                        //Es decir que el button submit estará activo y se podrá hacer click.
+            >  
               Create Activity
             </button>
           
         </form>
-
        <div>
         {input.idCountry.map((e) => {
           return (
@@ -191,6 +188,7 @@ function Form() {
           );
         })}
         </div> 
+
       </div>
 </div>
   );

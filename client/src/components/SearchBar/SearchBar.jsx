@@ -16,6 +16,7 @@ const SearchBar = () => {
         event.preventDefault();
         dispatch(searchByName(name));
         setName('');
+        
     }
 
     return(

@@ -22,7 +22,7 @@
         right rgb(198, 196, 196) 0%,
         rgba(255, 251, 251, 0.12) 20%
       );
-    border: whi;
+   
     
 }
 
@@ -35,4 +35,24 @@
 .select:hover {
     outline: 2px solid rgba(54, 13, 13, 0.639);
     cursor: pointer;
+}
+
+.btnReload {
+    background-color: white;
+    color: black;
+    font-size: 15px;
+    border-radius: .5rem;
+    border: 1px solid black;
+    margin: .3rem;
+    cursor: pointer;
+    transition: .3s;
+    height: 1.9rem;
+    width: 8rem;
+}
+  
+.btnReload:hover {
+    color: white;
+    background-color: black;
+    transition: .5s;
+ 
 }
