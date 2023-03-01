@@ -1,4 +1,4 @@
-import { GET_COUNTRIES, GET_DETAIL, FILTER_CONTINENT, ORDER_BY_NAME, FILTER_POPULATION, FILTER_BY_ACTIVITIES, SEARCH_BY_NAME, GET_ACTIVITIES, POST_ACTIVITY } from "./actions";
+import { GET_COUNTRIES, GET_DETAIL, FILTER_CONTINENT, ORDER_BY_NAME, FILTER_POPULATION, FILTER_BY_ACTIVITIES, SEARCH_BY_NAME, GET_ACTIVITIES, POST_ACTIVITY, FILTER_TIMEZONES } from "./actions";
 
 //*** ESTADOS ****
 const initialState = {
@@ -8,6 +8,7 @@ const initialState = {
     detail: {},
     filterActivity:'All',
     filterContinent:'All',
+    filterTimezone: 'All',
 }
 
 //******* CASOS *****
@@ -57,7 +58,7 @@ const reducer = (state = initialState, action ) => {
 				if (b.name > a.name) {
 					return -1;
 				}
-				return 0; 
+				return 0;  // si son iguales
 			}) : state.countries.slice().sort(function (a, b) {
 				if (a.name > b.name) {
 					return -1;
@@ -128,6 +129,26 @@ const reducer = (state = initialState, action ) => {
         countries: activityFilter,
         filterActivity: action.payload,
       };
+
+     
+    case FILTER_TIMEZONES:
+      let timezoneFiltered = state.allCountries;
+      if (action.payload !== 'All') {
+        timezoneFiltered = timezoneFiltered.filter(
+          (country) => country.timezones.includes(action.payload)
+        );
+      }
+      
+      if (state.filterContinent !== 'All') {
+        timezoneFiltered = timezoneFiltered.filter(
+          (country) => country.continent === state.filterContinent
+        );
+      }
+      return {
+        ...state,
+        countries: timezoneFiltered,
+        filterTimezone: action.payload,
+  };
     
 	default:
         return {...state};

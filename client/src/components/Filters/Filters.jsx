@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import style from "../Filters/Filter.module.css"
 import { useDispatch, useSelector } from "react-redux";
-import { filterContinent, orderByName, filterPopulation, filterByActivities, getActivities, getCountries } from "../../redux/actions";
+import { filterContinent, orderByName, filterPopulation, filterByActivities, getActivities, getCountries, filterTimezones } from "../../redux/actions";
 
 
 const Filter = ({ currentPage, setCurrentPage }) => {
@@ -38,9 +38,16 @@ function handleActivity(e) {
   setCurrentPage(1); 
 }
 
+/////////////////VER ////////////////
+
+function handleTimezone(e) {
+  dispatch(filterTimezones(e.target.value));
+  setCurrentPage(1); 
+}
+
 //////////////////////////////////////////
 
-// ****** Boton reload countries ******
+// ****** Boton clean filters/reload ******
 const handleClick = (event)=> {
   event.preventDefault();
   dispatch(getCountries());
@@ -80,20 +87,49 @@ const handleClick = (event)=> {
       <div className={style.selectContainer} >
         <select onChange={(e) => handleActivity(e)}  className={style.select} >
           <option value='All' className={style.option}>All Activities</option>
-          {activities.length
-            ? activities.map((el) => {
+          {activities?.map((el) => {
                 return (
                   <option value={el.name} key={el.id}>
                     {el.name}
                   </option>
                 )
             })
-            : <p>No activities have been created</p> 
           }
         </select>
       </div>
 
-      <button onClick={handleClick} className={style.btnReload}>Clean Filters</button> 
+      <div className={style.selectContainer}> 
+        <select className={style.select} onChange={(event) => handleTimezone(event)}>
+            <option value='All' className={style.option} >All Timezones</option>
+            <option value='UTC-12:00' className={style.option} >UTC-12:00</option>
+            <option value='UTC-11:00' className={style.option} >UTC-11:00</option>
+            <option value='UTC-10:00' className={style.option} >UTC-10:00</option>
+            <option value='UTC-09:00' className={style.option} >UTC-09:00</option>
+            <option value='UTC-08:00' className={style.option} >UTC-08:00</option>
+            <option value='UTC-07:00' className={style.option} >UTC-07:00</option>
+            <option value='UTC-06:00' className={style.option} >UTC-06:00</option>
+            <option value='UTC-05:00' className={style.option} >UTC-05:00</option>
+            <option value='UTC-04:00' className={style.option} >UTC-04:00</option>
+            <option value='UTC-03:00' className={style.option} >UTC-03:00</option>
+            <option value='UTC-02:00' className={style.option} >UTC-02:00</option>
+            <option value='UTC-01:00' className={style.option} >UTC-01:00</option>
+            <option value='UTC+00:00' className={style.option} >UTC+00:00</option>
+            <option value='UTC+01:00' className={style.option} >UTC+01:00</option>
+            <option value='UTC+02:00' className={style.option} >UTC+02:00</option>
+            <option value='UTC+03:00' className={style.option} >UTC+03:00</option>
+            <option value='UTC+04:00' className={style.option} >UTC+04:00</option>
+            <option value='UTC+05:00' className={style.option} >UTC+05:00</option>
+            <option value='UTC+06:00' className={style.option} >UTC+06:00</option>
+            <option value='UTC+07:00' className={style.option} >UTC+07:00</option>
+            <option value='UTC+08:00' className={style.option} >UTC+08:00</option>
+            <option value='UTC+09:00' className={style.option} >UTC+09:00</option>
+            <option value='UTC+10:00' className={style.option} >UTC+10:00</option>
+            <option value='UTC+11:00' className={style.option} >UTC+11:00</option>
+            <option value='UTC+12:00' className={style.option} >UTC+12:00</option>
+          </select>
+      </div>
+
+      <button onClick={handleClick} className={style.btnReload}>Reload</button> 
 
     </div>
      ) 

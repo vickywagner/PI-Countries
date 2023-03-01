@@ -10,6 +10,7 @@ export const FILTER_BY_ACTIVITIES = 'FILTER_BY_ACTIVITIES'
 export const SEARCH_BY_NAME = 'SEARCH_BY_NAME';
 export const GET_ACTIVITIES = 'GET_ACTIVITIES';
 export const POST_ACTIVITY = 'POST_ACTIVITY';
+export const FILTER_TIMEZONES = 'FILTER_TIMEZONES';
 
 
 // ****** ACTIONS *****
@@ -67,6 +68,13 @@ export function filterByActivities(activity) {
     };
   }
 
+/////VER
+export const filterTimezones = (payload) => {
+	return {
+		type: FILTER_TIMEZONES,
+		payload,
+	};
+};
 //////////////////////////////////////////////
 
 //Para la searchBar *******

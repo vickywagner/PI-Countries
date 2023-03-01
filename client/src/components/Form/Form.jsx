@@ -114,7 +114,7 @@ function Form() {
                 handleChange(e);
               }}
             />
-            {errors.name && <p style={{color: 'red'}}>{errors.name}</p>}
+            {errors.name && <p className={style.error}>{errors.name}</p>}
           </div>
    
             <div>
@@ -129,7 +129,7 @@ function Form() {
                      <option value="4">⭐⭐⭐⭐ ☆</option>
                      <option value="5">⭐⭐⭐⭐⭐</option>
                  </select>
-                 {errors.difficulty && (<p style={{color: 'red'}}>{errors.difficulty}</p>)}
+                 {errors.difficulty && (<p className={style.error}>{errors.difficulty}</p>)}
                  </div>
           
                 <div>
@@ -144,7 +144,7 @@ function Form() {
                           handleChange(e);
                         }}
                          />
-                 {errors.duration && <p style={{color: 'red'}}>{errors.duration}</p>}
+                 {errors.duration && <p className={style.error}>{errors.duration}</p>}
                  </div>
 
             <div>
@@ -158,7 +158,7 @@ function Form() {
                     <option value="Winter">Winter</option>
                     <option value="Spring">Spring</option>
                  </select>                
-               {errors.season && <p style={{color: 'red'}}>{errors.season}</p>}
+               {errors.season && <p className={style.error}>{errors.season}</p>}
                 </div>
 
           <label className={style.labels}>Countries: </label>
@@ -167,6 +167,7 @@ function Form() {
               return <option value={t.id}> {t.name} </option>;
             })}
           </select>
+            <p className={style.detail}>More than one country can be selected</p>
           
             <button type="submit" className={style.btnCreate}   // desabilitamos el boton si el form tiene errores
              disabled={!Object.keys(errors).length ? false : true}  // Si no hay errores, disabled será establecido en false. 

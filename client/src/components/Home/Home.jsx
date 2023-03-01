@@ -48,7 +48,8 @@ const Home = () => {
                      subregion={c.subregion}
                      area={c.area}
                      population={c.population}
-                     id = {c.id}/>
+                     id = {c.id}
+                     timezones={c.timezones}/>
                 </div>
                   )})
                }
