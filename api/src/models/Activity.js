@@ -16,7 +16,7 @@ module.exports = (sequelize) => {
     name: {
         type: DataTypes.STRING,
         allowNull: false,
-        // unique: true // VER 
+        // unique: true // VER PORQUE DESP NO PUEDO HACER 2 CON EL = NOMBRE
     },
 
     difficulty: {   
@@ -50,11 +50,11 @@ module.exports = (sequelize) => {
         type: DataTypes.ENUM('Summer', 'Autumn', 'Winter', 'Spring'),
         allowNull: false
      },
-     createInDb:{   // creamos esta propiedad "creado en BD" por si queremos filtrar
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
-        defaultValue: true,
-       }  // por si hacemos la distincion de los que tiene la api y los de db, accedemos mas facil al que cree x esta propiedad
+    //  createInDb:{   // creamos esta propiedad "creado en BD" por si queremos filtrar
+    //     type: DataTypes.BOOLEAN,
+    //     allowNull: false,
+    //     defaultValue: true,
+    //    }  // por si hacemos la distincion de los que tiene la api y los de db, accedemos mas facil al que cree x esta propiedad
     // todos los paises que yo cree, se van a crear con esta propiedad, por eso lo seteamos en true
     },
     { timestamps: false }
