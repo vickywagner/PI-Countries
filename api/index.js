@@ -20,14 +20,13 @@
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
 require('dotenv').config(); 
-const {PORT} = process.env;
-const port = PORT || 3001;
+const PORT = process.env.PORT || 3001;
 const { getApiInfo } = require('./src/Service/countriesService');
 getApiInfo();
 
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
-  server.listen(port, () => {
-    console.log(`%s listening on ${port}`); // eslint-disable-line no-console
+  server.listen(PORT, () => {
+    console.log(`%s listening on ${PORT}`); // eslint-disable-line no-console
   });
 });
