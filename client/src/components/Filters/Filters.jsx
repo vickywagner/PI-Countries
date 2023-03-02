@@ -104,9 +104,7 @@ const handleClick = (event)=> {
             <option value='UTC-12:00' className={style.option} >UTC-12:00</option>
             <option value='UTC-11:00' className={style.option} >UTC-11:00</option>
             <option value='UTC-10:00' className={style.option} >UTC-10:00</option>
-            <option value='UTC-09:00' className={style.option} >UTC-09:00</option>
             <option value='UTC-08:00' className={style.option} >UTC-08:00</option>
-            <option value='UTC-07:00' className={style.option} >UTC-07:00</option>
             <option value='UTC-06:00' className={style.option} >UTC-06:00</option>
             <option value='UTC-05:00' className={style.option} >UTC-05:00</option>
             <option value='UTC-04:00' className={style.option} >UTC-04:00</option>
