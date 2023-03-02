@@ -18,7 +18,7 @@ export const FILTER_TIMEZONES = 'FILTER_TIMEZONES';
 export const getCountries = () => {
     return async function (dispatch) {
         try{  
-            const apiData = await axios.get('http://localhost:3001/countries')
+            const apiData = await axios.get('https://pi-countries-production-6d1d.up.railway.app/countries')
             const countries = apiData.data;
             dispatch({ type: GET_COUNTRIES, payload: countries })
         } catch (error) {
@@ -30,7 +30,7 @@ export const getCountries = () => {
 export const getDetail = (id) => {
     return async function (dispatch) {
         try{  
-            const apiData = await axios.get(`http://localhost:3001/countries/${id}`)
+            const apiData = await axios.get(`https://pi-countries-production-6d1d.up.railway.app/countries/${id}`)
             const detail = apiData.data;
             dispatch({ type: GET_DETAIL, payload: detail })
         } catch (error) {
@@ -80,7 +80,7 @@ export const filterTimezones = (payload) => {
 //Para la searchBar *******
 export const searchByName = (name) => async dispatch => {
     try {
-        let json = await axios.get(`http://localhost:3001/countries?name=${name}`)
+        let json = await axios.get(`https://pi-countries-production-6d1d.up.railway.app/countries?name=${name}`)
         return dispatch({ type: SEARCH_BY_NAME, payload: json.data })
     } catch (error) {
         console.error(error);
@@ -90,7 +90,7 @@ export const searchByName = (name) => async dispatch => {
 //********** ACTIVITIES (GET Y POST) *************
 export const getActivities = () => async dispatch => {
     try {
-    let json = await axios.get('http://localhost:3001/activities')
+    let json = await axios.get('https://pi-countries-production-6d1d.up.railway.app/activities')
     return dispatch({ type: GET_ACTIVITIES, payload: json.data })
     } catch (error) {
         console.error(error);
@@ -100,7 +100,7 @@ export const getActivities = () => async dispatch => {
 export const postActivity = (payload) => {
 	return async function (dispatch) {
 		try {
-	        await axios.post('http://localhost:3001/activities', payload);
+	        await axios.post('https://pi-countries-production-6d1d.up.railway.app/activities', payload);
 			alert ("Activity created successfully")
             return dispatch({ type: POST_ACTIVITY });
 		} catch (error) {
