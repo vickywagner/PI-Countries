@@ -1,6 +1,5 @@
 import { GET_COUNTRIES, GET_DETAIL, FILTER_CONTINENT, ORDER_BY_NAME, FILTER_POPULATION, FILTER_BY_ACTIVITIES, SEARCH_BY_NAME, GET_ACTIVITIES, POST_ACTIVITY, FILTER_TIMEZONES } from "./actions";
 
-//*** ESTADOS ****
 const initialState = {
     countries: [],
     allCountries: [],
@@ -11,7 +10,6 @@ const initialState = {
     filterTimezone: 'All',
 }
 
-//******* CASOS *****
 const reducer = (state = initialState, action ) => {
    switch (action.type) {
    	case GET_COUNTRIES:
@@ -33,14 +31,16 @@ const reducer = (state = initialState, action ) => {
           ? allCountries
           : allCountries.filter((country) => country.continent === action.payload);
         
+      //si actualmente el estado filterActivity no es 'All', filtramos nuevamente "continentFiltered"
+      //para incluir solo aquellos países que tengan la actividad específica que se está filtrando.
         if(state.filterActivity !== 'All'){
           continentFiltered = continentFiltered.filter((e) => e.Activities.find(a => a.name === state.filterActivity));
-           }
+           } //usamos find para buscar en [] de act de cada país, la act que se está filtrando (state.filterActivity).
           
         return {
-              ...state,
-              countries: continentFiltered,
-              filterContinent: action.payload,
+            ...state,
+            countries: continentFiltered,
+            filterContinent: action.payload,
         };
 
     case SEARCH_BY_NAME:
@@ -113,8 +113,8 @@ const reducer = (state = initialState, action ) => {
     case FILTER_BY_ACTIVITIES:
       let countriesActivities = state.allCountries
 
+      //COMBINANDO CON CONTINENTES
       if(state.filterContinent!=='All'){
-        //console.log(state.filterContinent)
         countriesActivities= countriesActivities.filter(e=>e.continent===state.filterContinent)
       }
 
@@ -138,7 +138,7 @@ const reducer = (state = initialState, action ) => {
           (country) => country.timezones.includes(action.payload)
         );
       }
-      
+       //COMBINANDO CON CONTINENTES
       if (state.filterContinent !== 'All') {
         timezoneFiltered = timezoneFiltered.filter(
           (country) => country.continent === state.filterContinent

@@ -7,7 +7,7 @@ import { useParams, Link } from "react-router-dom";
 
 const Detail = () => { 
     const dispatch = useDispatch();
-    const { id } = useParams(); //me traigo el id desde la ruta gracias al useParams
+    const { id } = useParams();
     const countryDetail = useSelector((state) => state.detail)
 
     useEffect(() => {
@@ -56,9 +56,6 @@ const Detail = () => {
             </div>
              <Link className={style.link} to="/create"><button className={style.btnCreate}>Create Activity</button></Link>               
         
-            {/* <button className={style.btn}>
-                <Link className={style.link} to='/home'>Back to Home</Link>
-            </button> */}
         </div>
     )
 }

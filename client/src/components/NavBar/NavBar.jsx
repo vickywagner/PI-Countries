@@ -5,9 +5,9 @@ import { Link, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getCountries } from "../../redux/actions";
 
-const NavBar = () => {
+const NavBar = ({currentPage, setCurrentPage}) => {
     const [visibility, setVisibility] = useState(null) // para que se muestre el nav en todas menos en landing
-    const dispatch = useDispatch();  // Nos traemos los paises
+    const dispatch = useDispatch(); 
     const location = useLocation();
 
     useEffect(() => {  // ya traemos todos los paises para cuando abrimos el home ya se cargan y el usuario no tiene que esperar
@@ -16,15 +16,16 @@ const NavBar = () => {
 
     useEffect(() => {
        setVisibility(location.pathname === '/' ? "none" : null)
-       //console.log("Funcionando")
     },[location.pathname])
+    //Si visibility es "none", el nav se ocultará (display: none). 
+    //Si visibility es null, el nav se mostrará normalmente.
 
     return(
        <nav className={style.nav}>
        <div className={style.mainContainer}  style={{display: visibility}} >
             <Link to='/home' className={style.links}>HOME</Link>
             <Link to='/create' className={style.links}>CREATE ACTIVITY</Link>
-            <SearchBar />
+            <SearchBar currentPage={currentPage} setCurrentPage={setCurrentPage} />
             </div>
        </nav>
     )
