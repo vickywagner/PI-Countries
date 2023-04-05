@@ -130,8 +130,7 @@ const handleClick = (event)=> {
       <button onClick={handleClick} className={style.btnReload}>Reload</button> 
 
     </div>
-     ) 
-     // lo que permite acceder a esa accion es el value
+    ) 
  }
 
  export default Filter;

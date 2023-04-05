@@ -2,20 +2,22 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { searchByName } from "../../redux/actions";
 import style from "../SearchBar/SearchBar.module.css"
+import { useSelector } from "react-redux";
 
 const SearchBar = () => {
     const dispatch = useDispatch();
-    const [name, setName] = useState(''); // seteo mi estado como string
+    const [name, setName] = useState('');
+    //const countries = useSelector((state) => state.countries);
 
     const handleInputChange = (event) => {
-        setName(event.target.value); //mi estado pasa a ser el event.target.value
-        //console.log(name) 
+        setName(event.target.value);
     }
 
     const handleSubmit = (event) => {
         event.preventDefault();
         dispatch(searchByName(name));
         setName('');
+        //setCurrentPage(1);
         
     }
 
@@ -26,7 +28,7 @@ const SearchBar = () => {
                 type='text'
                 placeholder="Search..."
                 onChange={(event) => handleInputChange(event)} 
-                value={name} // actualizar el valor del input
+                value={name}
                 /> 
             
             <button className ={style.btn}

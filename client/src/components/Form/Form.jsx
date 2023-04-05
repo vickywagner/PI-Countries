@@ -16,7 +16,7 @@ function Form() {
   
   const listCountries = useSelector((state) => state.countries);
 
-  const [errors, setErrors] = useState({}); // este estado local es para las validaciones(del formulario controlado)
+  const [errors, setErrors] = useState({});
   const [input, setInput] = useState({
     name: "",
     difficulty: "",
@@ -24,7 +24,7 @@ function Form() {
     season: "",
     idCountry: [],
   });
-  // console.log(input);
+
   useEffect(() => {
     dispatch(getCountries());
   }, [dispatch]);
@@ -47,14 +47,15 @@ function Form() {
 //"handleSelect" guarda en un [] todo lo que seleccione ---> COUNTRIES
   function handleSelect(e) {
     setInput((input) => {
-      if (!input.idCountry.includes(e.target.value)) {  //verificamos si el valor de e.target.value (el valor seleccionado) NO está incluido en el arreglo idCountry del estado anterior input.
-        return {   // si NO esta, se crea un nuevo obj que copia el estado anterior (input) y agrega el valor de e.target.value al arreglo idCountry
-          ...input,
+      if (!input.idCountry.includes(e.target.value)) {  //verificamos si el valor de e.target.value (el valor 
+                              // seleccionado) NO está incluido en el arreglo idCountry del estado anterior input.
+        return {  // si NO esta, retornamos una copia el estado anterior (input) y agrega el valor de 
+          ...input,                                                       //e.target.value al arreglo idCountry
           idCountry: [...input.idCountry, e.target.value],
         };
-      } else { // Si e.target.value SI está incluido en el [] idCountry, mostranos un alert y se devuelve un nuevo obj que copia todas las propiedades del estado anterior (input) y mantiene el arreglo idCountry sin cambios.
-        alert("No se puede incluir un país duplicado");
-        return {
+      } else { // Si e.target.value SI está incluido en el [] idCountry, mostranos un alert y se devuelve un nuevo 
+        alert("No se puede incluir un país duplicado"); //obj que copia todas las propiedades del estado anterior 
+        return {                                          //(input) y mantiene el arreglo idCountry sin cambios.
           ...input,
           idCountry: [...input.idCountry],
         };
@@ -63,9 +64,7 @@ function Form() {
   }
 
   
-//"handleSubmit" --> para manejar el envío del formulario.
-//Valida la información de "input" y, si es válida, envía una acción de "postActivities" al almacenamiento 
-// de Redux y navega a la página principal
+//"handleSubmit" --> Valida la información de "input" y, si es válida, envía una acción de "postActivities" al almacenamiento de Redux y navega a la página principal
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(postActivity(input));
@@ -92,9 +91,6 @@ function Form() {
   return (
     <div className={style.container}>
      
-        {/* <Link className={style.link} to="/home">
-          <button className={style.btn}>Back to home</button>
-        </Link> */}
         <h1 className={style.title}>CREATE A TOURIST ACTIVITY</h1>
       
         <div className={style.form} >

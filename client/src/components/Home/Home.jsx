@@ -25,7 +25,6 @@ const Home = () => {
    return(
       <div className={style.container}>
          <h1></h1>
-         {/* <button onClick={handleClick} className={style.btnReload} >Clean Filters</button>  */}
 
         <Filters 
             currentPage={currentPage} 
