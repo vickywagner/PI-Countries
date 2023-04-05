@@ -21,21 +21,21 @@ const Pagination = ({countriesPerPage, allCountries, paginado, currentPage, setc
     return(
         <nav className={style.paginadoNavContainer}>
             {pageNumbers.length > 1 && (
-            <ul className={style.paginadoList}>
-                  {currentPage > 1 ? (
-                    <button className={style.btn} onClick={() => paginado(currentPage - 1)} disabled={currentPage === 1}>Previous</button>
+                <ul className={style.paginadoList}>
+                    {currentPage > 1 ? (
+                        <button className={style.btn} onClick={() => paginado(currentPage - 1)} disabled={currentPage === 1}>Previous</button>
                     ) : (
-                         <button hidden className={style.btn}>Anterior</button>
-                         )}
-                { pageNumbers && 
-                        pageNumbers.map(number =>(                  
-                    <li onClick={() => paginado(number)} key={number} className={`${style.number} ${currentPage === number && style.active}`}>  {/* para marcar en la pag que estamos */}
-                        <a>{number}</a>  
-                    </li>
-                ))
-                }
-                    <button className={style.btn} onClick={() => paginado(currentPage + 1)} disabled={currentPage === Math.ceil(allCountries/countriesPerPage)}>Next</button>
-            </ul>
+                        <button hidden className={style.btn}>Anterior</button>
+                    )}
+                    { pageNumbers && 
+                            pageNumbers.map(number =>(                  
+                        <li onClick={() => paginado(number)} key={number} className={`${style.number} ${currentPage === number && style.active}`}>  {/* para marcar en la pag que estamos */}
+                            <a>{number}</a>  
+                        </li>
+                    ))
+                    }
+                        <button className={style.btn} onClick={() => paginado(currentPage + 1)} disabled={currentPage === Math.ceil(allCountries/countriesPerPage)}>Next</button>
+                </ul>
              )}
         </nav>
 
