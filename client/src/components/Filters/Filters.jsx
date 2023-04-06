@@ -30,6 +30,7 @@ const Filter = ({ currentPage, setCurrentPage }) => {
     setCurrentPage(1); 
     setFilteredContinent(event.target.value);
     }
+    //
 
 //********** ordenar x POBLACION ***************
 const handlePopulation = (event) => {
