@@ -101,7 +101,6 @@ export const postActivity = (payload) => {
 	return async function (dispatch) {
 		try {
 	        await axios.post('http://localhost:3001/activities', payload);
-			alert ("Activity created successfully")
             return dispatch({ type: POST_ACTIVITY });
 		} catch (error) {
             console.log(error)

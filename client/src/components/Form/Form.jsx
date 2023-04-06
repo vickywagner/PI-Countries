@@ -4,6 +4,7 @@ import { postActivity, getCountries } from "../../redux/actions"
 import { Link, useHistory } from "react-router-dom";
 import style from "./Form.module.css";
 import validation from '../Form/validation';
+//import Swal from "sweetalert2";
 
 function Form() {
   const dispatch = useDispatch();
@@ -29,8 +30,7 @@ function Form() {
     dispatch(getCountries());
   }, [dispatch]);
   
-//"handleChange" --> para manejar el cambio de estado de los demás campos de "input". 
-//Actualiza el estado de "input" con la nueva información.
+//"handleChange" --> para manejar el cambio de estado de los demás campos de "input". Actualiza el estado de "input" con la nueva información.
   function handleChange(e) {
     setInput({
       ...input,
@@ -39,23 +39,22 @@ function Form() {
     setErrors(
       validation({
         ...input,
-        [e.target.name]: e.target.value, // me copio todo lo que venga del formulario , en el caso de que en alguno
-      })                                      // no cumpla con las validaciones, se va a poner un texto advirtiendo
+        [e.target.name]: e.target.value, 
+      }) 
     ); 
   }
 
 //"handleSelect" guarda en un [] todo lo que seleccione ---> COUNTRIES
   function handleSelect(e) {
     setInput((input) => {
-      if (!input.idCountry.includes(e.target.value)) {  //verificamos si el valor de e.target.value (el valor 
-                              // seleccionado) NO está incluido en el arreglo idCountry del estado anterior input.
-        return {  // si NO esta, retornamos una copia el estado anterior (input) y agrega el valor de 
-          ...input,                                                       //e.target.value al arreglo idCountry
+      if (!input.idCountry.includes(e.target.value)) {  //verificamos si el valor de e.target.value (el valor seleccionado) NO está incluido en el arreglo idCountry del estado anterior input.
+        return {  // si NO esta, retornamos una copia el estado anterior (input) y agrega el valor de e.target.value al arreglo idCountry
+          ...input,
           idCountry: [...input.idCountry, e.target.value],
         };
-      } else { // Si e.target.value SI está incluido en el [] idCountry, mostranos un alert y se devuelve un nuevo 
-        alert("No se puede incluir un país duplicado"); //obj que copia todas las propiedades del estado anterior 
-        return {                                          //(input) y mantiene el arreglo idCountry sin cambios.
+      } else { // Si e.target.value SI está incluido en el [] idCountry, mostranos un alert y se devuelve un nuevo obj que copia todas las propiedades del estado anterior (input) y mantiene el arreglo idCountry sin cambios.)
+        alert("No se puede incluir un país duplicado");
+        return {
           ...input,
           idCountry: [...input.idCountry],
         };
@@ -65,9 +64,28 @@ function Form() {
 
   
 //"handleSubmit" --> Valida la información de "input" y, si es válida, envía una acción de "postActivities" al almacenamiento de Redux y navega a la página principal
-  function handleSubmit(e) {
+  const handleSubmit = async(e) => {
     e.preventDefault();
+    // if(!input.name || !input.difficulty || !input.duration || !input.season){
+    //   return alert ( 'Por favor complete el formulario antes de enviarlo')
+    //   }
+
+    const allActivities = await fetch('http://localhost:3001/activities').then ((res) => res. json());
+    const activityExist = allActivities.some((activity) => activity.name === input.name)
+    
+    if(activityExist){
+    return alert('An activity with that name already exists')
+    }
+
     dispatch(postActivity(input));
+    // Swal.fire({
+    //   position: 'top-end',
+    //   icon: 'success',
+    //   title: 'Congratulations you created a new activity!',
+    //   showConfirmButton: false,
+    //   timer: 1400,
+    //   backdrop: true,
+    // })
     alert("Congratulations you created a new activity!");
     setInput({
         name: "",
@@ -76,11 +94,11 @@ function Form() {
         season: "",
         idCountry: [],
     });
+    dispatch(getCountries())
     history.push("/home");
   }
 
-//"handleDelete" --> para borrar los paises(id) q haya seleccionado en el form, va a crear un nuevo array con
-// todos los que no sean el elemento que le hice click
+//"handleDelete" --> para borrar los paises(id) q haya seleccionado en el form, va a crear un nuevo array con todos los que no sean el elemento que le hice click
   function handleDelete(e) {
     setInput({
       ...input,
