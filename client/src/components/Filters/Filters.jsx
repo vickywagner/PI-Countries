@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import style from "../Filters/Filter.module.css"
 import { useDispatch, useSelector } from "react-redux";
 import { filterContinent, orderByName, filterPopulation, filterByActivities, getActivities, getCountries, filterTimezones } from "../../redux/actions";
@@ -8,6 +8,9 @@ const Filter = ({ currentPage, setCurrentPage }) => {
   const dispatch = useDispatch();
   
   const activities = useSelector((state) => state.activities);
+  const [ sortName, setSortName ] = useState('asc');
+  const [ filteredContinent, setFilteredContinent] = useState('All');
+  const [ sortPopulation, setSortPopulation ] = useState('low');
 	
   useEffect(() => {
     dispatch(getActivities());
@@ -18,18 +21,21 @@ const Filter = ({ currentPage, setCurrentPage }) => {
 	const handleSort = (event) => {
 		dispatch(orderByName(event.target.value));
 		setCurrentPage(1);
+    setSortName(event.target.value);
 	};
-
+  
   //******** ordenar x CONTINENTES ********
   function handleContinent (event){
     dispatch(filterContinent(event.target.value));
     setCurrentPage(1); 
+    setFilteredContinent(event.target.value);
     }
 
 //********** ordenar x POBLACION ***************
 const handlePopulation = (event) => {
   dispatch(filterPopulation(event.target.value));
   setCurrentPage(1); 
+  setSortPopulation(event.target.value);
 };
 
 //********** ordenar x Actividades ***************
@@ -38,18 +44,21 @@ function handleActivity(e) {
   setCurrentPage(1); 
 }
 
-/////////////////VER ////////////////
+//********** ordenar x Zona Horaria ***************
 
-function handleTimezone(e) {
-  dispatch(filterTimezones(e.target.value));
-  setCurrentPage(1); 
-}
+// function handleTimezone(e) {
+//   dispatch(filterTimezones(e.target.value));
+//   setCurrentPage(1); 
+// }
 
 //////////////////////////////////////////
 
 // ****** Boton clean filters/reload ******
 const handleClick = (event)=> {
   event.preventDefault();
+  setSortName(event.target.value);
+  setFilteredContinent(event.target.value);
+  setSortPopulation(event.target.value);
   dispatch(getCountries());
 }
 
@@ -58,14 +67,14 @@ const handleClick = (event)=> {
     <div className={style.container}>
    	 
       <div className={style.selectContainer}>
-        <select className={style.select} onChange={(event) => handleSort(event)}> 
+        <select className={style.select} onChange={(event) => handleSort(event)} value={sortName}> 
           <option value='asc' className={style.option} >Ascendant</option>
           <option value='desc' className={style.option} >Decendant</option>
         </select>
       </div>
-
+     
       <div className={style.selectContainer}>
-        <select className={style.select} onChange={(event) => handleContinent(event)}>
+        <select className={style.select} onChange={(event) => handleContinent(event)} value={filteredContinent}>
             <option value='All' className={style.option} >All</option>
             <option value='Africa' className={style.option} >Africa</option>
             <option value='Asia' className={style.option} >Asia</option>
@@ -76,16 +85,16 @@ const handleClick = (event)=> {
             <option value='Antarctica' className={style.option} >Antarctica</option>
           </select>
       </div>
-
+      
       <div className={style.selectContainer}>
-        <select className={style.select} onChange={(event) => handlePopulation(event)}> 
+        <select className={style.select} onChange={(event) => handlePopulation(event)} value={sortPopulation}> 
             <option value={"High"} className={style.option} >Higher Population</option>
             <option value={"low"} className={style.option} >Less Population</option>
           </select>
         </div>
-
+        
       <div className={style.selectContainer} >
-        <select onChange={(e) => handleActivity(e)}  className={style.select} >
+        <select onChange={(e) => handleActivity(e)} className={style.select}>
           <option value='All' className={style.option}>All Activities</option>
           {activities?.map((el) => {
                 return (
@@ -98,7 +107,7 @@ const handleClick = (event)=> {
         </select>
       </div>
 
-      <div className={style.selectContainer}> 
+      {/* <div className={style.selectContainer}> 
         <select className={style.select} onChange={(event) => handleTimezone(event)}>
             <option value='All' className={style.option} >All Timezones</option>
             <option value='UTC-12:00' className={style.option} >UTC-12:00</option>
@@ -125,7 +134,7 @@ const handleClick = (event)=> {
             <option value='UTC+11:00' className={style.option} >UTC+11:00</option>
             <option value='UTC+12:00' className={style.option} >UTC+12:00</option>
           </select>
-      </div>
+      </div> */}
 
       <button onClick={handleClick} className={style.btnReload}>Reload</button> 
 
