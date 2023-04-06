@@ -24,12 +24,12 @@ const Detail = () => {
                 <h3 className = {style.title}>{countryDetail?.id}</h3>
             
                 <div className = {style.info}>
-                    <p>Continent: {countryDetail?.continent}</p>
-                    <p>Capital: {countryDetail?.capital}</p>
-                    <p>Subregion: {countryDetail?.subregion}</p>
-                    <p>Area: {countryDetail?.area}km2</p>
-                    <p>Population: {countryDetail?.population}</p>
-                    <p>Timezones: {countryDetail?.timezones}</p>
+                    <p><strong>Continent: </strong>{countryDetail?.continent}</p>
+                    <p><strong>Capital: </strong>{countryDetail?.capital}</p>
+                    <p><strong>Subregion: </strong>{countryDetail?.subregion}</p>
+                    <p><strong>Area: </strong>{countryDetail?.area}km2</p>
+                    <p><strong>Population: </strong>{countryDetail?.population}</p>
+                    <p><strong>Timezones: </strong>{countryDetail?.timezones}</p>
                 </div>
             </div>
             

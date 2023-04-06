@@ -25,7 +25,7 @@ const Pagination = ({countriesPerPage, allCountries, paginado, currentPage, setc
                     {currentPage > 1 ? (
                         <button className={style.btn} onClick={() => paginado(currentPage - 1)} disabled={currentPage === 1}>Previous</button>
                     ) : (
-                        <button hidden className={style.btn}>Anterior</button>
+                        <button hidden className={style.btn}>Previous</button>
                     )}
                     { pageNumbers && 
                             pageNumbers.map(number =>(                  

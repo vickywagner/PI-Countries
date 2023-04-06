@@ -1,5 +1,4 @@
-.container {
-  
+.container {  
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -13,9 +12,9 @@
 
 .title {
     font-family:  'Gill Sans MT';
-    font-size: 1.7rem;
+    font-size: 1rem;
     font-weight: bolder;
-    margin-top: 4rem;
+    margin-top: 3rem;
 }
 
 .form {
@@ -23,10 +22,10 @@
     grid-template-columns: 1fr 2fr;
     grid-gap: 10px;
     align-items: center;
-    width: 21rem;
-    padding: 2rem;
+    width: 17rem;
+    padding: 1.7rem 2rem 1.7rem 2rem;
     border-radius: 12px;
-    margin: .8rem;
+    margin: .6rem;
     backdrop-filter: blur(50px);
     color: black;
     background: linear-gradient(to top,
@@ -35,7 +34,7 @@
 }
 
 
-.btn {
+/* .btn {
     display: inline-flex;
     align-items: center;
     align-content: center;
@@ -55,7 +54,7 @@
     transition: 0.2s;
     transform: translateY(-1px);
     border-bottom: 1px solid white;
-}
+} */
 
 .link {
     text-decoration: none;
@@ -65,32 +64,30 @@
 .labels {
     color: black;
     font-family:  'Gill Sans MT';
-    font-size: 1.2rem;
+    font-size: .9rem;
     font-weight: 500;
-    margin-bottom: 5px;
-    text-align: left;
-    margin: 2rem;    
+    text-align: left; 
 }
 
 .inputs {
-    width: 20rem;
-    height: 30px ;
+    width: 15rem;
+    height: 20px ;
     border-color: rgba(239, 236, 216, 0.69);
     border-radius: 7px;
-    font-size: 1rem;
+    font-size: .7rem;
     color:grey;
-    margin: 10px 0 20px 0;
+    margin: 5px 0 10px 0;
     padding-left: 15px;
 }
 
 .selectInputs {
-    width: 21.5rem;
-    height: 34px ;
+    width: 16.5rem;
+    height: 24px ;
     border-color: rgba(239, 236, 216, 0.69);
     border-radius: 7px;
-    font-size: 1rem;
+    font-size: .7rem;
     color: grey;
-    margin: 10px 0 20px 0;
+    margin: 8px 0 15px 0;
     /* text-align: center; */
     padding-left: 15px;
      
@@ -99,15 +96,15 @@
 .btnCreate {
     background-color: black;
     color: white;
-    font-size: 1rem;
+    font-size: .8rem;
     border-radius: .5rem;
     margin: .2rem;
-    margin-top: 1rem;
+    margin-top: .8rem;
     padding: .3rem;
     cursor: pointer;
     transition: .3s;
-    height: 2.3rem;
-    width: 9rem;
+    height: 2rem;
+    width: 7.2rem;
     
     grid-column: span 2;
     justify-self: center;
@@ -119,27 +116,27 @@
 }
 
 .detail{
-margin-top: -1rem;
-font-size: .9rem;
+margin-top: -.6rem;
+font-size: .7rem;
 }
 
 .containerID {
     display: inline-flex;
     flex-flow: row;
-    margin: 1rem;
+    margin: 1rem 0 .3rem 2rem;
 }
 
 .pais {
     color: rgb(0, 0, 0);
     text-align: center;
-    font-size: 1.3rem;
+    font-size: .9rem;
     margin: .4rem;
     padding: .2rem;
     font-weight: bold;
 }
 
 .cruz {
-    font-size: .6rem;
+    font-size: .5rem;
     font-weight: bold;
     color: white;
     background-color: rgb(0, 0, 0);
@@ -150,6 +147,7 @@ font-size: .9rem;
 }
 
 .error{
-    color: rgb(216, 0, 0);
-    margin-top: -.6rem;
+    color: rgb(187, 4, 4);
+    margin-top: -.5rem;
+    font-size: .7rem;
 }

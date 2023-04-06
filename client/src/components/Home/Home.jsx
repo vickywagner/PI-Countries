@@ -24,8 +24,6 @@ const Home = () => {
 
    return(
       <div className={style.container}>
-         <h1></h1>
-
         <Filters 
             currentPage={currentPage} 
             setCurrentPage={setcurrentPage} />
