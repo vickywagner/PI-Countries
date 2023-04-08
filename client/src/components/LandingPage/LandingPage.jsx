@@ -6,7 +6,7 @@ import Beach from "../../assets/Beach.mp4";
 const LandingPage = () => {
    return (
    	<div className={style.container}>
-         <video src={Beach} muted autoPlay loop />
+         <video src={Beach} muted autoPlay loop className={style.video}/>
          <div className={style.content}>
          <h1>Welcome to my website about countries</h1>
          <p className={style.text}>Let's discover the world together</p>
