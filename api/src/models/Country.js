@@ -2,17 +2,6 @@ const { DataTypes } = require('sequelize');
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
-  // defino el modelo
-
-  // ID (Código de tres letras). *
-  // Nombre. *
-  // Imagen de la bandera. *    flags?
-  // Continente. *              region
-  // Capital. *                 capital
-  // Subregión.                 subregion
-  // Área.                      area
-  // Población. *               population
-
   sequelize.define('Country', {
     id: {
       type: DataTypes.STRING(3),  //ID (Código de tres letras). *
